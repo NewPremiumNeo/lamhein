@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn | 2k23 Freshers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100svh;
+            color: #fef8f8;
+        }
+
+        .background {
+            background-repeat: no-repeat;
+            position: fixed;
+            z-index: -1;
+            width: 100%;
+            height: 100svh;
+            object-fit: cover;
+            overflow: hidden;
+        }
+
+        .container {
+            color: #fef8f8;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(17px);
+            --webkit-backdrop-filter: blur(17px) opacity: 0.5;
+            padding: 30px 20px 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 35rem;
+        }
+
+        .container>h1 {
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+            font-size: 3rem;
+        }
+
+        hr {
+            margin-bottom: 2rem;
+        }
+
+
+        .alert {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .alert ul li {
+            margin-left: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+
+        label {
+            display: block;
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            border: 1px solid #fef8f8;
+            display: block;
+            height: 50px;
+            width: 100%;
+            border-radius: 3px;
+            padding: 0 10px;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        input[type="submit"] {
+            margin-top: 3rem;
+            width: 100%;
+            background-color: #7e6dfd;
+            color: white;
+            padding: 15px 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #624efe;
+        }
+
+        .form-control:focus,
+        .form-control:not(:placeholder-shown) {
+            border-color: inherit;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            outline: 0;
+            background-color: #001220;
+            color: #ECF0F5;
+        }
+
+        .non-existing-user {
+            margin: 3rem 0;
+            font-size: 1.5rem;
+        }
+
+        .non-existing-user a {
+            font-weight: 700;
+            color: #7e6dfd;
+        }
+    </style>
+</head>
+
+<body>
+    <img class="background" src="/images/layered-waves-haikei.svg" alt="">
+    <div class="container">
+        <h1>LOGIN</h1>
+        <hr>
+        <% if (messages && messages.length> 0) { %>
+            <div id="msg" class="alert alert-danger" role="alert">
+                <ul>
+                    <li>
+                        Enrollment or Password is Incorrect.
+                    </li>
+                </ul>
+            </div>
+            <% } %>
+                <form action="/login" method="post" id="LogInForm">
+                    <label for="enrollment">Enrollment Number</label>
+                    <input type="text" id="enrollment" class="form-control" name="enrollment" placeholder="Enrollment"
+                        required oninput="this.value = this.value.toUpperCase()">
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" name="password" placeholder="Password"
+                        required>
+
+                    <input type="submit" value="LogIn">
+                </form>
+                <div class="non-existing-user">
+                    <p>Haven't Registered Yet!? <a href="/register">Register</a></p>
+                </div>
+    </div>
+    <script>
+        setTimeout(() => {
+            document.getElementById('msg').style.display = 'none';
+        }, 3000);
+    </script>
+</body>
+
+</html>

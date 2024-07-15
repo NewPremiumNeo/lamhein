@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!----===== External links ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="/stylesheets/admin.css">
+
+    <title>Admin Panel</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="images/logo.png" alt="">
+            </div>
+
+            <span class="logo_name">Admin Panel</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="/admin">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Dashboard</span>
+                    </a></li>
+                <li><a href="/admin/photos">
+                        <i class="uil uil-files-landscapes"></i>
+                        <span class="link-name">Photos</span>
+                    </a></li>
+                <li><a href="/admin/photos/upload">
+                        <i class="uil uil-chart"></i>
+                        <span class="link-name">Upload Photos</span>
+                    </a></li>
+                <li><a href="/admin/vote">
+                        <i class="uil uil-thumbs-up"></i>
+                        <span class="link-name">Vote Panel</span>
+                    </a></li>
+                <li><a href="/admin/users">
+                        <i class="uil uil-comments"></i>
+                        <span class="link-name">Users</span>
+                    </a></li>
+                <li><a href="/admin/votestatus">
+                        <i class="uil uil-share"></i>
+                        <span class="link-name">Vote Status</span>
+                    </a></li>
+            </ul>
+
+            <ul class="logout-mode">
+                <li><a href="/admin/logout">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                        <span class="link-name">Dark Mode</span>
+                    </a>
+
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
+
+            <img src="images/profile.jpg" alt="">
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-tachometer-fast-alt"></i>
+                    <span class="text">Dashboard</span>
+                </div>
+
+                <div class="boxes">
+                    <div class="box box1">
+                        <i class="uil uil-thumbs-up"></i>
+                        <span class="text">Total Users</span>
+                        <span class="number">
+                            <%= users.length %>
+                        </span>
+                    </div>
+                    <div class="box box2">
+                        <i class="uil uil-comments"></i>
+                        <span class="text">Total Photos</span>
+                        <span class="number">
+                            <%= photos.length %>
+                        </span>
+                    </div>
+                    <div class="box box3">
+                        <i class="uil uil-share"></i>
+                        <span class="text">Total Videos</span>
+                        <span class="number">
+                            <%= videos.length %>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <div class="title">
+                    <i class="uil uil-clock-three"></i>
+                    <span class="text">Recent Activity</span>
+                </div>
+
+                <div class="activity-data">
+                    <div class="data names">
+                        <span class="data-title">Name</span>
+                        <% users.forEach(user=> { %>
+                            <span class="data-list">
+                                <%= user.name %>
+                            </span>
+                            <% }) %>
+                    </div>
+                    <div class="data email">
+                        <span class="data-title">Email</span>
+                        <% users.forEach(user=> { %>
+                            <span class="data-list">
+                                <%= user.email %>
+                            </span>
+                            <% }) %>
+                    </div>
+                    <div class="data joined">
+                        <span class="data-title">Enrollment</span>
+                        <% users.forEach(user=> { %>
+                            <span class="data-list">
+                                <%= user.username %>
+                            </span>
+                            <% }) %>
+                    </div>
+                    <div class="data type">
+                        <span class="data-title">Number</span>
+                        <% users.forEach(user=> { %>
+                            <span class="data-list">
+                                <%= user.mobile %>
+                            </span>
+                            <% }) %>
+                    </div>
+                    <div class="data status">
+                        <span class="data-title">Liked</span>
+                        <% users.forEach(user=> { %>
+                            <span class="data-list">
+                                <%= user.likePhotoIds.length %>
+                            </span>
+                            <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="/javascripts/admin.js"></script>
+</body>
+
+</html>

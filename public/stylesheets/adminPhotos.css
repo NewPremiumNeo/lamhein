@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    background-color: #262626;
+}
+
+.container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 8%;
+}
+
+.jumbotron {
+    color: #2c3e50;
+    background-color: #ecf0f1;
+    border: 1px solid #d6dbdf;
+    margin-top: 10px;
+    margin: 50px 8%;
+    padding: 30px 5%;
+    border-radius: 10px;
+}
+.panel {
+    margin: 5rem auto 4rem;
+    width:80% ;
+    text-align: center;
+    background-color: transparent;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.panel a {
+    display: inline-block;
+    background: #83ccd3;
+    border-radius: 30px;
+    text-align: center;
+    height: 6rem;
+    width: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    text-decoration: none;
+}
+
+.gallery{
+    columns: 4;
+    column-gap: 16px;
+}
+
+.gallery img{
+    width: 100%;
+    border-radius: 5px;
+}
+
+.grid__images{
+    display: inline-block;
+    margin-bottom: 16px;
+    position: relative;
+    padding: 5px;
+    background-color: #363636;
+}
+
+.button-container{
+    display: flex;
+    justify-content: space-between;
+  }
+  .btn-like.liked {
+    color: red;
+  }
+
+@media (max-width: 1200px){
+    .gallery{
+        columns: 3;
+    }
+}
+@media (max-width: 992px){
+    .gallery{
+        columns: 2;
+    }
+}
+@media (max-width: 600px){
+    .gallery{
+        columns: 1;
+    }
+}

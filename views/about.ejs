@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project X</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .main {
+        text-align: center;
+        background-color: #f5f5f5;
+    }
+
+    .aboutus {
+        margin: 20px 0;
+        font-weight: 300;
+        font-style: italic;
+        color: #4e4e4e;
+        font-size: 1.1rem;
+        letter-spacing: normal;
+        line-height: 1.5rem;
+    }
+
+    .container {
+        text-align: center;
+        background: #f5f5f5;
+        height: 100%;
+    }
+
+    .header {
+        padding-top: 30px;
+        color: #444;
+        font-size: 20px;
+        margin: auto;
+        line-height: 50px;
+    }
+
+    .sub-container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 30px 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .teams {
+        margin: 10px;
+        padding: 22px;
+        max-width: 30%;
+        cursor: pointer;
+        transition: 0.4s;
+        box-sizing: border-box;
+    }
+
+    .teams:hover {
+        background: #ddd;
+        border-radius: 12px;
+    }
+
+    .teams img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+
+    .name {
+        padding: 12px;
+        font-weight: bold;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        color: #4e4e4e;
+
+    }
+
+    .desig {
+        font-style: italic;
+        color: #888;
+        font-size: 0.9rem
+    }
+
+    .about {
+        margin: 20px 0;
+        font-weight: lighter;
+        color: #4e4e4e;
+        font-size: 1rem;
+    }
+
+    .wave {
+        animation-name: wave-animation;
+        /* Refers to the name of your @keyframes element below */
+        animation-duration: 2.5s;
+        /* Change to speed up or slow down */
+        animation-iteration-count: infinite;
+        /* Never stop waving :) */
+        transform-origin: 70% 70%;
+        /* Pivot around the bottom-left palm */
+        display: inline-block;
+    }
+
+    @keyframes wave-animation {
+        0% {
+            transform: rotate(0.0deg)
+        }
+
+        10% {
+            transform: rotate(14.0deg)
+        }
+
+        /* The following five values can be played with to make the waving more or less extreme */
+        20% {
+            transform: rotate(-8.0deg)
+        }
+
+        30% {
+            transform: rotate(14.0deg)
+        }
+
+        40% {
+            transform: rotate(-4.0deg)
+        }
+
+        50% {
+            transform: rotate(10.0deg)
+        }
+
+        60% {
+            transform: rotate(0.0deg)
+        }
+
+        /* Reset for the last half to pause */
+        100% {
+            transform: rotate(0.0deg)
+        }
+    }
+
+
+    .social-links {
+        margin: 14px;
+    }
+
+    .social-links a {
+        display: inline-block;
+        height: 30px;
+        width: 30px;
+        transition: .4s;
+    }
+
+    .social-links a:hover {
+        transform: scale(1.5);
+    }
+
+    .social-links a i {
+        color: #444;
+    }
+
+    @media screen and (max-width: 600px) {
+        .teams {
+            max-width: 100%;
+        }
+
+
+
+    }
+</style>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <h1>About Us</h1>
+        </div>
+        <div class="sub-container">
+            <div class="aboutus">
+                <p class="para">
+                    Welcome to our Freshers Party registration website! We're thrilled to invite all our juniors to join
+                    us
+                    for an unforgettable evening of fun, music, and memories. This platform has been created exclusively
+                    for
+                    you to register for the event, download your tickets, view event photos and videos, and stay updated
+                    on
+                    the event timeline.
+
+                    As a team of passionate students, we're dedicated to creating memorable experiences for our fellow
+                    classmates. From organizing exciting events to fostering a sense of community, our goal is to make
+                    your
+                    university journey unforgettable.
+
+                    Registering for the Freshers Party is simple and convenient. Just fill out the registration form
+                    with
+                    your details, and you'll receive a downloadable ticket that grants you access to the event.
+                    Additionally, relive the highlights of the Freshers Party through our curated collection of photos
+                    and
+                    videos, capturing candid moments and energetic performances. Stay informed about the schedule and
+                    activities planned for the event with our detailed event timeline.
+
+                    Have questions or need assistance? Our dedicated team is here to help. Feel free to reach out to us
+                    through the contact section for any queries regarding registration, tickets, or the event itself.
+
+                    This website isn't just for the Freshers Party; it's a platform for all future events. Stay tuned
+                    for
+                    upcoming gatherings, parties, and activities designed to enhance your university experience.
+
+                    Join us as we embark on this exciting journey together. Register now, download your ticket, and get
+                    ready to create unforgettable memories at the Freshers Party! We'll see you on the dance floor!
+
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <h1>Our Team</h1>
+        </div>
+        <div class="sub-container">
+            <div class="teams">
+                <img src="/images/organisers/Aaryan_pic.png" alt="">
+                <div class="name">Aaryan Raj</div>
+                <div class="desig">Project Head</div>
+                <div class="about">
+                    <span class="wave">👋</span>Hi, I am a 2nd year student of B.Tech(CSE) in MGCUB.Transformed the
+                    vision of Freshers party website into realism. Made the UI/UX of the project using HTML , CSS , JS.
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/aaryan-raj-482484258" target="_blank"><i
+                            class="fa fa-linkedin"></i></a>
+                    <a href="https://instagram.com/aaryan.raj3?igshid=NGVhN2U2NjQ0Yg=="><i class="fa fa-facebook"></i></a>
+                    <a href="https://instagram.com/aaryan.raj3?igshid=NGVhN2U2NjQ0Yg==" target="_blank"><i
+                            class="fa fa-instagram"></i></a>
+                    <a href="https://twitter.com/Aaryan_raj3?t=JzzvqHVGnk5Znc8aWOkmGw&s=09" target="_blank"><i
+                            class="fa fa-twitter"></i></a>
+                    <a href="https://github.com/aaryanraj3" target="_blank"><i class="fa fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="teams">
+                <img src="/images/Ankit pic.jpeg" alt="">
+                <div class="name">Ankit Raj </div>
+                <div class="desig">Frontend</div>
+                <div class="about">
+                    <span class="wave">👋</span>Hi, I am a 2nd year student of B.Tech(CSE) in MGCUB. Contributed
+                    significantly in the frontend and animation using HTML , CSS , JS.
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/ankit-pandey-936a9425b/" target="_blank"><i
+                            class="fa fa-linkedin"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100009184061294" target="_blank"><i
+                            class="fa fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/x0__ankit__x0/" target="_blank"><i
+                            class="fa fa-instagram"></i></a>
+                    <a href="https://twitter.com/x0ankit0x" target="_blank"><i class="fa fa-twitter"></i></a>
+                    <a href="https://github.com/x0ankit" target="_blank"><i class="fa fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="teams">
+                <img src="/images/organisers/prince.png" alt="">
+                <div class="name">Prince Kumar </div>
+                <div class="desig">Backend</div>
+                <div class="about">
+                    <span class="wave">👋</span> Hi, I'm a 2nd year student of B.Tech(CSE) in MGCUB. Made the backend
+                    using Nodejs, Expressjs, Mongodb, Ejs template.
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/prince-vishwakarma-1b9131260" target="_blank"><i
+                            class="fa fa-linkedin"></i></a>
+                    <a href="https://instagram.com/itsmepkv007/" target="_blank"><i class="fa fa-facebook"></i></a>
+                    <a href="https://instagram.com/itsmepkv007/" target="_blank"><i class="fa fa-instagram"></i></a>
+                    <a href="https://x.com/ItsmePKV007?t=XyJ_P5BIApnCPdFdJ1P5gA&s=09" target="_blank"><i
+                            class="fa fa-twitter"></i></a>
+                    <a href="https://github.com/prince-kumar-vishwakarma" target="_blank"><i
+                            class="fa fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+
+@media screen and (max-width:984px){
+    main .gallery{
+        columns: 2;
+    }
+    i{
+        font-size: 25px;
+    }
+    .button-container h6{
+        font-size: 10px;
+    }
+}
+
+
+/* when the screen width is less than 759px */
+@media screen and (max-width: 759px){
+
+    main .about-button{
+        height: 40px;
+        width: 40px;
+    }
+
+    main .about-button img{
+        width: 28px;
+    }
+
+}
+
+/* when the screen width is less than 748px */
+@media screen and (max-width:748px){
+    main .gallery{
+        columns: 1;
+    }
+
+    i{
+        font-size: 20px;
+    }
+
+    .button-container h6{
+        font-size: 9px;
+    }
+
+    main .other-categories .containing-div .title{
+        font-size: 28px;
+    }
+
+}
+
+/* when the screen width is less than 615px */
+@media screen and (max-width:615px){
+    main  .other-categories .containing-div .title{
+        font-size: 28px;
+    }
+
+    main  .other-categories .containing-div .content{
+        font-size: 15px;
+    }
+
+    main  .other-categories .containing-div{
+        margin: auto;
+        width: 100%;
+        text-align: center;
+    }
+
+    i{
+        font-size: 22px;
+    }
+    .button-container h6{
+        font-size: 9.5px;
+    }
+
+    main>.gallery {
+        padding: 10px;
+    }
+
+
+}
+
+
+/* when the screen width is less than 594px */
+@media screen and (max-width:594px){
+    .button-container h6{
+        font-size: 9px;
+    }
+
+    main>.gallery {
+        padding: 8px;
+    }
+}
+
+
+/* when the screen width is less than 368px */
+@media screen and (max-width:368px){
+
+    i{
+        font-size: 18px;
+       
+    }
+    .button-container h6{
+        font-size: 8px;
+    }
+
+    main>.gallery {
+        padding: 5px;
+    }
+}

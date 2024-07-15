@@ -1,0 +1,107 @@
+  /* Color Pallete for the Website including for both light & darkheight: theme */
+  @media (prefers-color-scheme: light) {
+    :root {
+      --text: #fff;
+      --background: #f5fffb;
+      --primary: #130292;
+      --secondary: #feb9d3;
+      --accent: #cde704;
+      --bg: url(/image/pexels-photo-1400139.jpeg);
+      --gard: linear-gradient(to right,rgb(106,6,236),rgb(220,0,240))
+    }
+  }
+  
+  ::-webkit-scrollbar{
+    height: 0;
+    width: 0;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text: #f5fffb;
+      --background: #000a06;
+      --primary: #7e6dfd;
+      --secondary: #46011c;
+      --accent: #e1fb18;
+      --bg: url(/image/circle-scatter-haikei-dark.svg);
+    }
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+    user-select: none;
+    color: white;
+  }
+  
+  body,
+  html {
+    color: var(--text);
+    font-family: 'Poppins';
+    font-weight: 400;
+    height: 100%;
+    width: 100%;
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+  }
+  body img{
+    position: fixed;
+    z-index: -1;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    overflow: hidden;
+  }
+  /* Gallery Section CSS Starts here */
+  #GallerySection {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  #GallerySection h2 {
+    margin: 3rem auto;
+    font-size: 4.5rem;
+    padding-top: 20px;
+  }
+  .btn{
+    width: 40svw;
+    height: 70svh;
+    border-radius: 3rem;
+    text-decoration: none;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.097);
+    resize: both;
+    overflow: auto;
+    min-width: 40svw;
+    min-height: 50svh;
+    backdrop-filter: blur(10px);
+    font-weight: 700;
+    letter-spacing: 0.6px;
+  }
+  .btn a:hover{
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+    box-shadow: 0.5rem 0.5rem 0 white;
+    transform: translate(-0.5rem, -0.5rem);
+    -webkit-transform: translate(-0.5rem, -0.5rem);
+  }
+
+  .btn a {
+    padding: 2.5rem 1rem;
+    border: 1.5px solid rgb(3, 129, 239);
+    outline: none;
+    border-radius: 10px;
+    background-color: transparent;
+    margin-top: 5rem;
+    font-size: 1.8rem;
+    width: fit-content;
+    text-decoration: none;
+    cursor: pointer;
+  }

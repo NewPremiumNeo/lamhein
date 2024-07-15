@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/stylesheets/photos.css">
+    <link rel="stylesheet" href="/stylesheets/responsive_design.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.css"
+        integrity="sha512-Woz+DqWYJ51bpVk5Fv0yES/edIMXjj3Ynda+KWTIkGoynAMHrqTcDUQltbipuiaD5ymEo9520lyoVOo9jCQOCA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+
+<body>
+    <main>
+
+        <div class="other-categories">
+            <div class="blur-background"></div>
+            <div class="containing-div">
+                <div class="details">
+                    <div class="title">
+                        <%= title %>
+                    </div>
+                    <div class="content">
+                        <p>A beautifull memories</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="gallery" style="display: block;">
+            <% if (allVideos && allVideos.length> 0) { %>
+                <% allVideos.forEach(post=> { %>
+                    <div class="grid__images">
+                        <a href="<%= post.postVideoUrl %>" data-lightbox="models" data-title="Photos">
+                            <iframe src="<%= post.postVideoUrl %>" class="gallery-image" width="640" height="480"
+                                allow="autoplay" style="border: none;"></iframe>
+                        </a>
+                        <div class="button-container">
+                            <div class="button__like">
+                                <span class="img_like">
+                                    <i onclick="liketoggle('<%= post._id %>')" data-photo-id="<%= post._id %>"
+                                        id="like-<%= post._id %>" class="ri-heart-line btn-like"></i>
+                                    <i onclick="savetoggle('<%= post._id %>')" data-photo-id="<%= post._id %>"
+                                        id="save-<%= post._id %>" class="ri-bookmark-3-line btn-save"></i>
+                                    <!-- <i class="ri-bookmark-3-fill"></i> -->
+                                </span>
+                                <i class="ri-download-fill"></i>
+                            </div>
+                            <h6 id="totalLike-<%= post._id %>"></h6>
+                        </div>
+                    </div>
+                    <% }); %>
+                        <% } else{ %>
+                            <h1 style="color: #111;">NO Photos of <%= title %>
+                            </h1>
+                            <% } %>
+
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.js"
+        integrity="sha512-oaWLach/xXzklmJDBjHkXngTCAkPch9YFqOSphnw590sy86CVEnAbcpw17QjkUGppGmVJojwqHmGO/7Xxx6HCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/javascripts/photos.js"></script>
+</body>
+
+</html>

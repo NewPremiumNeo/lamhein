@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Upload</title>
+    <link rel="stylesheet" href="/stylesheets/upload.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>File Uploader JavaScript</header>
+        <a href="/admin/photos">Photos</a>
+        <% if (successMessage && successMessage.length> 0) { %>
+            <div class="alert alert-success" role="alert">
+                <%= successMessage %>
+            </div>
+            <% } %>
+                <% if (errorMessage && errorMessage.length> 0) { %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= errorMessage %>
+                    </div>
+                    <% } %>
+                        <form action="#" enctype="multipart/form-data">
+                            <label for="year">Year:</label>
+                            <select id="year" name="year">
+                                <option value="2k21">2k21</option>
+                                <option value="2k22">2k22</option>
+                                <option value="2k23">2k23</option>
+                            </select>
+                            <input class="file-input" type="file" name="photos" hidden>
+                            <input type="text" name="postTitle" placeholder="Enter Title" value="Photo" required hidden>
+                            <textarea name="postDescription" rows="4" placeholder="Enter your post content" required
+                                hidden>Photo Description</textarea>
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Browse File to Upload</p>
+                        </form>
+                        <section class="progress-area"></section>
+                        <section class="uploaded-area"></section>
+    </div>
+
+    <script src="/javascripts/upload.js"></script>
+
+</body>
+
+</html>

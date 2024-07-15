@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/vote.css">
+    <title>Project X</title>
+</head>
+
+<body>
+    <h1 class="heading">Vote! For Audience ki pasand Award</h1>
+    <main class="container">
+    </main>
+    <script>
+        names = ['Aadil Latif', 'Aditya Pratap', 'Ajain Raj', 'Akash', 'Alok Jaiswal', 'Alok Mehta', 'Ashish Kumar 1', 'Ashish Kumar 2', 'Ayush Pandey', 'Gyan Prakash', 'Kartik Sahu', 'Monu Kumawat', 'Nikhil Anand', 'Pabitra Mondal', 'Pankaj Kumar', 'Pratap Yadav', 'Prateek pandey', 'Priyanshu Kumar', 'Ranjeet Chaudhary', 'Ravi Raj', 'Rishabh Shukla', 'Riya Kumari', 'Sandeep Prajapati', 'Satyam Kumar', 'Shiva Hansda', 'Shruti Gupta', 'Shristi Gupta', 'Sudip Tikader', 'Swatantra Sahu', 'Vishal Kumar']
+        candidate = ""
+        names.forEach((name, index) => {
+            candidate += `
+            <div class="candidate">
+                <div class="cand-img">
+                    <img loading="lazy" src="/images/freshers/MGCU2023CSIT30${String(index + 1).padStart(2, '0')}.png"
+                        alt="">
+                </div>
+                    <div class="cand-id">
+                        <h2>ID-${index + 1}</h2>
+                        <h2 class="cand-name">${name}</h2>
+                    </div>
+                    <button class="vote" onclick="vote('MGCU2023CSIT30${String(index + 1).padStart(2, '0')}')">Vote Now!</button>
+            </div>`
+        });
+        document.querySelector(".container").innerHTML = candidate;
+
+        async function vote(votedMember) {
+            try {
+                const response = await fetch(`/vote`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ votedMember })
+                });
+                if (response.ok) {
+                    window.location.href = '/vote/voted';
+                } else {
+                    console.error('Failed to vote');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+
+</html>

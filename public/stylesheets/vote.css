@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-primary: #ab79d6;
+    --color-secondary: #d367c1;
+    --color-background: #27272c;
+    --color-yellow: #dedf40;
+    --color-green: #62cb5c;
+    --color-blue: #00bbcb;
+    --gradient: var(--color-secondary) 10%, var(--color-yellow) 25%, var(--color-green) 50%, var(--color-blue) 75%, var(--color-primary) 90%;
+}
+
+body,
+html {
+    font-size: 62.5%;
+    width: 100%;
+    scroll-behavior: smooth;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.heading {
+   margin: 15px;
+    font-weight: 800;
+    color: #ffffff; /* White color for better contrast */
+    font-size: 3rem; /* Larger font size for emphasis */
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for emphasis */
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary)); /* Gradient background for header */
+    -webkit-background-clip: text; /* Clip text to the background gradient */
+    -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
+}
+
+
+.container{
+    background-image: url(../images/6035425.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    flex-direction: wrap;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 5rem 1rem;
+    min-height: 100vh;
+    align-items: center;
+}
+
+.candidate{
+    width: 250px;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.8); /* Lighter background for better contrast */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5.1px);
+    -webkit-backdrop-filter: blur(5.1px);
+    border: 1px solid rgba(235, 235, 235, 0.26);
+    border-radius: 5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cand-img {
+    position: relative;
+    height: 20rem;
+    width: 20rem;
+    background-image: linear-gradient(45deg,var(--gradient));
+    padding: 0.6rem;
+    border: solid 5px rgb(255, 255, 255);
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.cand-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.cand-id h2{
+    font-size: 1.8rem;
+    font-family: monospace;
+    color: #5f71a0; 
+    text-align: center;
+}
+
+.cand-id h2.cand-name{
+    color: #4d66a3;
+}
+
+.vote{
+    padding: 1rem 1.6rem;
+    font-size: 1.7rem;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 1.3rem;
+    background-color: #0437b7;
+    color: aliceblue;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    transition: 300ms ease-in-out;
+    cursor: pointer;
+}
+.vote:hover{
+    background-color: aliceblue;
+    color: #0437b7;
+}
+
+@media (max-width:550px) {
+    .container{
+        gap: 5px;
+    }
+    .candidate{
+        width: 200px;
+    }
+    .movieInfo h1{
+        font-size: 1.9rem;
+    }
+
+    
+}
+
+@media (max-width:550px){
+    html{
+        font-size: 50%;
+    }
+    .container{
+        gap: 5px;
+    }
+    .candidate{
+        width: 49%;
+    }
+    .cand-img {
+        height: 18rem;
+        width: 18rem;
+    }
+}

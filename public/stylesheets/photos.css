@@ -1,0 +1,150 @@
+*{
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+*:focus{
+    outline: none;
+}
+
+/* commom styles */
+body{
+    font-family: 'Lato', sans-serif;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    background-color: #4F185995;
+}
+
+a{
+    text-decoration: none;  
+    color: inherit;
+}
+
+/* Other catergories starting image styles */
+main  .other-categories{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    z-index: 0;
+}
+
+main .other-categories .blur-background{
+    /* background: #00000061; */
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* opacity: 0.8; */
+}
+
+main  .other-categories .containing-div{
+    height: fit-content;
+    width: fit-content;
+    margin-left: 45px;
+    position: absolute;
+    bottom: 0px;
+    z-index: 2;
+}
+main  .other-categories .containing-div .details{
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5px;
+    /* border: 2px solid #000; */
+    border-radius: 5px;
+}
+
+main  .other-categories .containing-div .title{
+    font-size: 46px;
+    font-weight: bold;
+    color: #492467;
+    line-height: 1.2;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+    -webkit-text-stroke: 0.3px white; 
+}
+
+main  .other-categories .containing-div .content{
+    font-size: 22px;
+    font-weight: 700;
+    color: #492467;
+    margin-top: 16px;
+    line-height: 1.6;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+    -webkit-text-stroke: 0.4px white; 
+}
+
+
+
+
+/* Gallery Styles */
+.gallery {
+    columns: 3;
+    gap: 24px;
+    align-items: center;
+    padding: 24px;
+    max-width: 1400px;
+    width: 100%;
+    margin: auto;
+    position: relative;
+}
+
+.grid__images{
+    position: relative;
+    margin-bottom: 22px;
+    display: inline-block;
+}
+
+.grid__images a{
+    display: inline-block;
+    background-color: black;
+}
+
+main .gallery .gallery-image{
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    cursor: zoom-in;
+}  
+
+.button-container{
+    width: 100%;
+    background-color: rgba(0, 0, 0);
+}
+
+.button-container h6{
+    color: #fff;
+    padding: 0px 15px 5px 18px;
+}
+
+.button__like{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px 5px 15px;
+    background-color: rgba(0, 0, 0);
+    transition: 0.3s ease-in-out;
+}
+
+.img_like{
+    display: flex;
+    gap: 20px;
+}
+
+i{
+    font-size: 30px;
+    color: white;
+}
+
+.ri-heart-fill{
+    color: red;
+}
