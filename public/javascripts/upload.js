@@ -2,10 +2,15 @@ const form = document.querySelector("form"),
   fileInput = document.querySelector(".file-input"),
   progressArea = document.querySelector(".progress-area"),
   uploadedArea = document.querySelector(".uploaded-area"),
-  year = document.querySelector("#year");
+  year = document.querySelector("#year"),
+  service = document.querySelector("#service");
 
 
 year.addEventListener("click", () => {
+  event.stopPropagation();
+});
+
+service.addEventListener("click", () => {
   event.stopPropagation();
 });
 
@@ -14,22 +19,27 @@ form.addEventListener("click", () => {
 });
 
 fileInput.onchange = ({ target }) => {
-  let file = target.files[0];
-  if (file) {
-    let fileName = file.name;
-    if (fileName.length >= 12) {
-      let splitName = fileName.split('.');
-      fileName = splitName[0].substring(0, 13) + "... ." + splitName[1];
-    }
-    uploadFile(fileName, file);
+  let files = target.files;
+  if (files.length > 0) {
+    [...files].forEach(file => {
+      let fileName = file.name;
+      if (fileName.length >= 12) {
+        let splitName = fileName.split('.');
+        fileName = splitName[0].substring(0, 13) + "... ." + splitName[1];
+      }
+      uploadFile(fileName, file);
+    });
   }
 }
+
+// Uncaught TypeError: photoUrls.forEach is not a function
 
 async function uploadFile(name, file) {
   try {
     let formData = new FormData();
     formData.append('photos', file);
     formData.append('year', document.getElementById("year").value); // Add year
+    formData.append('service', document.getElementById("service").value); // Add service
     formData.append('postTitle', document.querySelector('input[name="postTitle"]').value); // Add post title
     formData.append('postDescription', document.querySelector('textarea[name="postDescription"]').value); // Add post description
 

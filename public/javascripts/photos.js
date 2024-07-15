@@ -19,7 +19,6 @@ socket.on('like', (data) => {
 
 document.addEventListener("DOMContentLoaded", function () {
     var likeButtons = document.querySelectorAll(".btn-like");
-
     // Check if the user has already liked posts and update button appearance
     likeButtons.forEach((button) => {
         var photoId = button.getAttribute("data-photo-id");
@@ -68,6 +67,13 @@ document.addEventListener("DOMContentLoaded", function () {
 // Function to handle like button click
 async function liketoggle(photoId) {
     const button = document.getElementById(`like-${photoId}`);
+    if (button.classList.contains("ri-heart-line")) {
+        button.classList.remove("ri-heart-line");
+        button.classList.add("ri-heart-fill");
+    }else{
+        button.classList.remove("ri-heart-fill");
+        button.classList.add("ri-heart-line");
+    }
     fetch(`/photo/like`, {
         method: 'PUT',
         headers: {
@@ -77,13 +83,13 @@ async function liketoggle(photoId) {
     })
         .then(response => response.json())
         .then(data => {
-            if (data.liked) {
-                button.classList.remove("ri-heart-line");
-                button.classList.add("ri-heart-fill");
-            } else {
-                button.classList.remove("ri-heart-fill");
-                button.classList.add("ri-heart-line");
-            }
+            // if (data.liked) {
+            //     button.classList.remove("ri-heart-line");
+            //     button.classList.add("ri-heart-fill");
+            // } else {
+            //     button.classList.remove("ri-heart-fill");
+            //     button.classList.add("ri-heart-line");
+            // }
 
             // Emit 'like' event to notify server about the like
             socket.emit('like', photoId);
@@ -113,3 +119,32 @@ async function savetoggle(photoId) {
         })
         .catch(error => console.error('Error:', error));
 }
+
+function downloadImage(imageUrl) {
+    // Construct the Cloudinary download URL (modify as needed)
+    const downloadUrl = imageUrl.replace('/upload/', '/upload/fl_attachment/');
+
+    // Trigger download by creating a temporary anchor element
+    const downloadLink = document.createElement('a');
+    downloadLink.href = downloadUrl;
+    downloadLink.download = 'image'; // Specify the default file name
+    downloadLink.click();
+}
+
+
+
+
+var btn = $('#button');
+
+$(window).scroll(function () {
+    if ($(window).scrollTop() > 300) {
+        btn.addClass('show');
+    } else {
+        btn.removeClass('show');
+    }
+});
+
+btn.on('click', function (e) {
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: 0 }, '300');
+});

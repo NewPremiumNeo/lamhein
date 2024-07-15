@@ -5,8 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/images/favicon_io/site.webmanifest">
     <title>
-        <%= title %>
+        <%= title %> Image Gallery
     </title>
     <link rel="stylesheet" href="/stylesheets/photos.css">
     <link rel="stylesheet" href="/stylesheets/responsive_design.css">
@@ -17,59 +22,67 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 
-<body>
+<body style="background-color: <%= (year === '2k23') ? '#362F66' : (year === '2k21') ? '#1A1A1ABB' : '#4F185995' %>">
     <main>
-
         <div class="other-categories">
-            <div class="blur-background" style="background-image: url('<%= bgimg %>');"></div>
+            <div class="blur-background year<%= year %>" style="background-image: url('<%= bgimg %>');"></div>
             <div class="containing-div">
                 <div class="details">
-                    <div class="title">
+                    <div class="title"
+                        style="color: <%= (year === '2k23') ? '#FCC364' : (year === '2k21') ? '#D2882D' : '#492467' %>">
                         <%= title %>
                     </div>
-                    <!-- <div class="content">
-                        <p>A beautiful memories</p>
-                    </div> -->
                 </div>
             </div>
         </div>
 
 
-        <section class="gallery" style="display: block;">
+        <section class="gallery">
             <% if (allPhotos && allPhotos.length> 0) { %>
                 <% allPhotos.forEach(post=> { %>
-                    <div class="grid__images">
-                        <a href="<%= post.postImageUrl %>" data-lightbox="models" data-title="Photos">
-                            <img src="<%= post.postImageUrl %>" alt="Photos" loading="lazy" class="gallery-image">
-                        </a>
-                        <div class="button-container">
-                            <div class="button__like">
-                                <span class="img_like">
-                                    <i onclick="liketoggle('<%= post._id %>')" data-photo-id="<%= post._id %>"
-                                        id="like-<%= post._id %>" class="ri-heart-line btn-like"></i>
-                                    <i onclick="savetoggle('<%= post._id %>')" data-photo-id="<%= post._id %>"
-                                        id="save-<%= post._id %>" class="ri-bookmark-3-line btn-save"></i>
-                                </span>
-                                <i class="ri-download-fill"></i>
+                    <div class="image-container">
+                        <% let imageUrl=post.postImageUrl; if (imageUrl.endsWith('.heic')) {
+                            imageUrl=imageUrl.replace('.heic', '.jpg' ); } if (imageUrl.startsWith('http://')) {
+                            imageUrl=imageUrl.replace('http://', 'https://' ); } %>
+
+                            <a href="<%= imageUrl %>" target="_blank" data-lightbox="models" data-title="Photos">
+                                <img src="<%= imageUrl %>" alt="Photos" loading="lazy" class="gallery-image">
+                            </a>
+                            <div class="button-container">
+                                <div class="button__like">
+                                    <span class="img_like">
+                                        <i onclick="liketoggle('<%= post._id %>')" data-photo-id="<%= post._id %>"
+                                            id="like-<%= post._id %>" class="ri-heart-line btn-like"></i>
+                                        <i onclick="savetoggle('<%= post._id %>')" data-photo-id="<%= post._id %>"
+                                            id="save-<%= post._id %>" class="ri-bookmark-3-line btn-save"></i>
+                                    </span>
+
+                                    <i class="ri-download-fill" onclick="downloadImage('<%= imageUrl %>')"></i>
+
+
+                                </div>
+                                <h6 id="totalLike-<%= post._id %>"></h6>
                             </div>
-                            <h6 id="totalLike-<%= post._id %>"></h6>
-                        </div>
                     </div>
                     <% }); %>
-                        <% } else{ %>
+                        <% } else { %>
                             <h1 style="color: #111;">No Photos of <%= title %>
                             </h1>
                             <% } %>
-
         </section>
+
     </main>
 
+    </main>
+    <a id="button"></a>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.js"
         integrity="sha512-oaWLach/xXzklmJDBjHkXngTCAkPch9YFqOSphnw590sy86CVEnAbcpw17QjkUGppGmVJojwqHmGO/7Xxx6HCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <script src="/socket.io/socket.io.js"></script>
     <script src="/javascripts/photos.js"></script>
+    <script>
+
+    </script>
 </body>
 
 </html>

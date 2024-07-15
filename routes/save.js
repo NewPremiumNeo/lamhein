@@ -47,8 +47,6 @@ router.get('/photo/:photoId/issaved', isLoggedIn, async function (req, res, next
     }
 });
 
-
-
 router.put('/video/save', isLoggedIn, async (req, res) => {
     try {
         const userId = req.user._id; // Assuming you have user ID available after authentication

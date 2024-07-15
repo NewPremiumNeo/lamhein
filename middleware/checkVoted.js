@@ -45,6 +45,7 @@ exports.checkVoteStatus = async (req, res, next) => {
         if (bool && bool.isVoteOn) {
             next();
         } else {
+            req.flash('error', 'Voting is Disable');
             res.redirect('/');
         }
     } catch (err) {

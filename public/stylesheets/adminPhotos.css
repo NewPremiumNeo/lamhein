@@ -53,31 +53,68 @@ html, body{
     text-decoration: none;
 }
 
-.gallery{
-    columns: 4;
-    column-gap: 16px;
-}
-
-.gallery img{
-    width: 100%;
-    border-radius: 5px;
-}
-
-.grid__images{
-    display: inline-block;
-    margin-bottom: 16px;
-    position: relative;
-    padding: 5px;
-    background-color: #363636;
-}
-
-.button-container{
+/* Gallery Styles */
+.gallery {
     display: flex;
-    justify-content: space-between;
-  }
-  .btn-like.liked {
-    color: red;
-  }
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    /* gap: 24px; */
+    /* padding: 24px; */
+    max-width: 100%;
+    width: 100%;
+    margin: auto;
+    margin-top: 20px;
+    position: relative;
+}
+
+/* Image container styles */
+.image-container {
+    width: 350px; /* Set fixed width for the image container */
+    height: 250px; /* Set fixed height for the image container */
+    margin-bottom: 22px;
+    display: inline-block;
+    overflow: hidden; 
+    position: relative;
+    background-color: #492467;
+    object-fit: cover;
+    
+}
+
+.image-container a {
+    display: block;
+    width: 100%; 
+    height: 100%; 
+    background-color: black;
+    object-fit: cover; 
+    overflow: hidden;
+    position: relative;
+}
+
+.image-container .gallery-image {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+.button-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 6px 10px 3px;
+    transition: 0.3s ease-in-out;
+    z-index: 999;
+}
+
+.button-container h6 {
+    color: #fff;
+    margin: 0;
+    padding-left: 15px;
+}
+
 
 @media (max-width: 1200px){
     .gallery{

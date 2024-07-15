@@ -36,7 +36,7 @@ router.get('/photos', isAdminLoggedIn, async function (req, res, next) {
         const allPhotos2k21 = await photoModel.find({ year: "2k21" });
         const allPhotos2k22 = await photoModel.find({ year: "2k22" });
         const allPhotos2k23 = await photoModel.find({ year: "2k23" });
-        res.render('adminPhotos', { allPhotos2k21, allPhotos2k22, allPhotos2k23, messages: req.flash('success') });
+        res.render('adminPhotos', {allPhotos2k21, allPhotos2k22, allPhotos2k23, messages: req.flash('success') });
     }
     catch (err) {
         console.error('Error in geting Post Data:- ', err.message);
@@ -140,7 +140,7 @@ router.get('/users', isAdminLoggedIn, async (req, res) => {
         }
     } else {
         try {
-            let users = await usersModel.find({}, 'username name email mobile dob');
+            let users = await usersModel.find({}, 'username name email mobile dob').populate('likePhotoIds');
 
             const errorMessage = req.flash('error');
             const successMessage = req.flash('success');
@@ -208,8 +208,10 @@ router.get('/votestatus', isAdminLoggedIn, async (req, res) => {
         const isVoteOn = boolValues ? boolValues.isVoteOn : false;
         const isWinnerOn = boolValues ? boolValues.isWinnerOn : false;
 
+        const { voteCounts } = await voteController.calculateWinners();
+        console.log(voteCounts)
         // Render the admin panel with actual values from the database
-        res.render('adminPageAccess', { isVoteOn, isWinnerOn });
+        res.render('adminPageAccess', { isVoteOn, isWinnerOn, voteCounts });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');

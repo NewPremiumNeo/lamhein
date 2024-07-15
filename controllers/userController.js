@@ -3,15 +3,50 @@ const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const usersModel = require('../models/usersModel.js');
 const { uploadOnImgbb } = require('../middleware/imgbb.js');
+const { uploadOnCloudinary } = require('../middleware/cloudinary.js');
+const CryptoJS = require("crypto-js");
 
-passport.use(
-    new localStrategy({
-        usernameField: "enrollment",
-        passwordField: "password"
-    },
-        userModel.authenticate())
-);
 
+passport.use(new localStrategy({
+    usernameField: "enrollment",
+    passwordField: "password"
+},
+    async function (enrollment, password, done) {
+        try {
+            const user = await userModel.findOne({
+                $or: [
+                    { email: enrollment },
+                    { username: enrollment }
+                ]
+            });
+
+            if (!user) {
+                return done(null, false, { message: 'Incorrect username or email.' });
+            }
+
+            const isAuthenticated = await user.authenticate(password);
+            if (!isAuthenticated) {
+                return done(null, false, { message: 'Incorrect password.' });
+            }
+
+            return done(null, user);
+        } catch (err) {
+            return done(err);
+        }
+    }
+));
+
+
+// Encryption function
+function encryptData(data) {
+    return CryptoJS.AES.encrypt(data, 'secret_key').toString();
+}
+
+// Decryption function
+function decryptData(encryptedData) {
+    const bytes = CryptoJS.AES.decrypt(encryptedData, 'secret_key');
+    return bytes.toString(CryptoJS.enc.Utf8);
+}
 
 function validateEnrollment(enrollment) {
     const AAAA = enrollment.slice(0, 4);
@@ -32,7 +67,15 @@ function validateEnrollment(enrollment) {
     }
 
     switch (YYYY) {
+        case "2019":
+            if (XXXX >= 6001 && XXXX <= 6010) {
+                return true;
+            }
+            break;
         case "2020":
+            if (XXXX >= 6001 && XXXX <= 6010) {
+                return true;
+            }
             if (!(XXXX >= 3001 && XXXX <= 3033)) {
                 return false;
             }
@@ -115,7 +158,9 @@ exports.postRegister = async (req, res) => {
         await userModel.register(userData, password)
             .then(() => {
                 passport.authenticate('local')(req, res, () => {
-                    req.flash('success', 'Registration successful. You are now logged in.');
+                    res.cookie('enrollment', encryptData(enrollment), { maxAge: 604800000 });
+                    res.cookie('password', encryptData(password), { maxAge: 604800000 });
+                    req.flash('success', 'Registration Successful');
                     res.redirect('/');
                 });
             })
@@ -124,7 +169,6 @@ exports.postRegister = async (req, res) => {
                 req.flash('error', err.message);
                 res.redirect('/register');
             });
-        console.log("2 shuuuuuuuu")
     } catch (err) {
         console.error('Error in registerUser:', err.message);
         req.flash('error', err.message);
@@ -168,7 +212,7 @@ exports.postProfileEdit = async (req, res) => {
 
         let result = null;
         if (req.file) {
-            result = await uploadOnImgbb(req.file.path);
+            result = await uploadOnCloudinary(req.file.path);
         }
 
         user.name = name;
@@ -190,14 +234,33 @@ exports.postProfileEdit = async (req, res) => {
 }
 
 
+exports.getLogin = function (req, res) {
+    let enrollment, password;
+    if (req.cookies.enrollment && req.cookies.password) {
+        // Decrypt enrollment and password cookies if they exist
+        enrollment = decryptData(req.cookies.enrollment).toUpperCase();
+        password = decryptData(req.cookies.password);
+    }
+    res.render('login', { messages: req.flash('error'), enrollment, password });
+}
 
 
-
-exports.postLogin = passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true,
-});
+exports.postLogin = function (req, res, next) {
+    passport.authenticate('local', function (err, user, info) {
+        if (err) { return next(err); }
+        if (!user) {
+            req.flash('error', 'Incorrect');
+            return res.redirect('/login');
+        }
+        req.logIn(user, function (err) {
+            if (err) { return next(err); }
+            res.cookie('enrollment', encryptData(req.body.enrollment), { maxAge: 604800000 }); // 7 days
+            res.cookie('password', encryptData(req.body.password), { maxAge: 604800000 }); // 7 days
+            req.flash('success', 'Login Successful');
+            return res.redirect('/');
+        });
+    })(req, res, next);
+};
 
 
 exports.getLogout = (req, res, next) => {
@@ -230,33 +293,3 @@ exports.updatePassword = async (req, res) => {
         res.redirect('/changepassword'); // Redirect to change password page
     }
 };
-
-// exports.postEditProfile = async function (req, res) {
-//     const {username, email, fullname, bio, userOldDp} = req.body;
-//     try {
-//         const existingEmailUser = await userModel.findOne({ email, _id: { $ne: req.user._id } });
-//         const existingEnrollmentUser = await userModel.findOne({ username, _id: { $ne: req.user._id } });
-//         if (existingEmailUser) {
-//             req.flash('error', 'Email is already used');
-//             return res.redirect('/profile');
-//         }
-//         if (existingEnrollmentUser) {
-//             req.flash('error', 'Username is already used');
-//             return res.redirect('/profile');
-//         }
-//         const userdp = req.file ? req.file.filename : userOldDp;
-//         let updatedUserData = await userModel.findByIdAndUpdate(req.user._id, {
-// enrollment,
-// name,
-// email,
-// mobile,
-// dob
-// // userDp: userdp
-//         })
-//         console.log(updatedUserData);
-//         res.redirect('/profile');
-//     } catch (err) {
-//         console.error('Error in editing profile:', err.message);
-//         res.status(500).send('Internal Server Error');
-//     }
-// };

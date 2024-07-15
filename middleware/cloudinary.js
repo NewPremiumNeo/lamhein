@@ -24,7 +24,7 @@ exports.uploadOnCloudinary = async (localFilePath) => {
         if (fileSizeInBytes > 8 * 1024 * 1024) {
             // Compress the image using Sharp
             fileBuffer = await sharp(fileBuffer)
-                .resize({ width: 1920, withoutEnlargement: true }) 
+                .resize({ width: 1920, withoutEnlargement: true })
                 .toBuffer();
         }
         console.log(fileBuffer)
@@ -39,17 +39,13 @@ exports.uploadOnCloudinary = async (localFilePath) => {
             resource_type: "auto"
         })
 
-        // const response = await cloudinary.uploader.upload(localFilePath, {
-        //     resource_type: "auto"
-        // })
-
         // file has been uploaded successfull
         console.log("file is uploaded on cloudinary ", response.url);
         if (fs.existsSync(localFilePath)) {
             fs.unlinkSync(localFilePath);
         }
         fs.unlinkSync(tempFilePath);
-        return response;
+        return response.url;
 
     } catch (error) {
         // remove the locally saved temporary file as the upload operation got failed

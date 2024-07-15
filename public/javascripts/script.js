@@ -14,9 +14,33 @@ window.matchMedia('(prefers-color-scheme: dark)').addListener(detectColorScheme)
 // first detection of mode
 detectColorScheme();
 
+setTimeout(() => {
+  const notification__box = document.querySelector('.notification__box')
+  if (notification__box) {
+    notification__box.style.display = 'none';
+  }
+}, 5000);
+
+
+//Loader
+
+const loader = document.getElementById("mainLoader");
+
+window.addEventListener("load", function (event) {
+  event.preventDefault();
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => {
+    gsap.to(loader, { autoAlpha: 0, duration: 1 }).then(() => {
+      loader.style.display = "none";
+      document.body.style.overflow = '';
+    });
+  }, 1000);
+});
+
 
 
 // CountDown Timer
+
 function getTimeRemaining(endtime) {
   const total = Date.parse(endtime) - Date.parse(new Date());
   const seconds = Math.floor((total / 1000) % 60);
@@ -44,23 +68,82 @@ function initializeClock(id, endtime) {
   function updateClock() {
     const t = getTimeRemaining(endtime);
 
-    daysSpan.innerHTML = t.days;
-    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-
     if (t.total <= 0) {
-      clearInterval(timeinterval);
+      if (daysSpan) {
+        daysSpan.parentNode.style.display = 'none';
+        clearInterval(timeinterval);
+        forwardTimer(t.total);
+      }
+    } else {
+      daysSpan.textContent = t.days;
+      hoursSpan.textContent = ('0' + t.hours).slice(-2);
+      minutesSpan.textContent = ('0' + t.minutes).slice(-2);
+      secondsSpan.textContent = ('0' + t.seconds).slice(-2);
     }
+
   }
 
   updateClock();
   const timeinterval = setInterval(updateClock, 1000);
 }
-// End date of the countdown
-const deadline = new Date(Date.parse(new Date("July 20,2024 00:00:00")));
-initializeClock('clockdiv', deadline);
 
+function forwardTimer(duration) {
+  const timerText = document.getElementById('timerText');
+  if (timerText) {
+    timerText.innerText = "Performance started.";
+    const interval = setInterval(function () {
+      duration++;
+      // Update the clock display
+      const hours = Math.floor(duration / 3600);
+      const minutes = Math.floor((duration % 3600) / 60);
+      const seconds = duration % 60;
+      document.querySelector(".hours").textContent = ('0' + hours).slice(-2);
+      document.querySelector(".minutes").textContent = ('0' + minutes).slice(-2);
+      document.querySelector(".seconds").textContent = ('0' + seconds).slice(-2);
+
+      // You can adjust this condition according to your needs
+      if (duration > 1000) {
+        clearInterval(interval);
+        timerText.innerText = "Performance started.";
+      }
+    }, 1000);
+  }
+}
+
+// End date of the countdown
+const deadline = new Date(Date.parse(new Date("July 20,2024 18:00:00")));
+const t = getTimeRemaining(deadline);
+if (t.total <= 0) {
+  if (document.querySelector(".days")) {
+    document.querySelector(".days").parentNode.style.display = 'none';
+  }
+  forwardTimer(Math.abs(t.total) / 1000);
+} else {
+  initializeClock('clockdiv', deadline);
+}
+
+
+//Contact
+function contact() {
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxRO8RyeQa4Qk7Vqjlfe5BuU9OBOv7uKWzTjDyVERN4WlQvCYB_pBRuVX73DI6glzZG/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg = document.getElementById('msg');
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+      .then(response => {
+        msg.style.display = 'block'
+        msg.innerHTML = "Message Send Successfully"
+        setTimeout(function () {
+          msg.style.display = 'none'
+          msg.innerHTML = ""
+        }, 5000);
+        form.reset();
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+}
+contact()
 //scroll triggers on nav and main section
 var t1 = gsap.timeline()
 gsap.to("#navbar", {
@@ -73,32 +156,22 @@ gsap.to("#navbar", {
     // markers:true,
     start: "top -1vh",
     end: "top -1.1vh",
+    // markers:"true",
     scrub: 1,
   },
 });
 t1.from("#navbar h1, #navbar a", {
-  y: -100,
+  y: -500,
   opacity: 0,
-  stagger: 0.2
+  stagger: 0.31
 })
 
 t1.from(".imp-heading h1,.btn", {
   x: -500,
   duration: 1,
-  opacity: 0
-})
-
-gsap.from(".profile", {
-  x: 50,
   opacity: 0,
-  duration: 1,
-  stagger: 0.4,
-  scrollTrigger: {
-    trigger: ".profile",
-    scroller: "body",
-    scrub: 1,
-  },
-});
+  stagger: 0.69
+})
 
 function hamwork() {
   const hambox = document.querySelector(".ham-box");
@@ -163,31 +236,15 @@ function hambarboxHeight() {
 }
 hambarboxHeight();
 
-//Loader
-
-const loader = document.getElementById("mainLoader");
-const body = document.querySelector("body");
-
-window.addEventListener("load", function (event) {
-  event.preventDefault();
-
-  setTimeout(() => {
-    gsap.to(loader, { autoAlpha: 0, duration: 1 }).then(() => {
-      loader.style.display = "none";
-    });
-  }, 1000);
-});
-
-
 
 //Organisers section
 
 function openDialog(role) {
   const members = {
-    'technical': ['Prince Kumar', 'Ankit Raj'],
+    'technical': ['Prince', 'Ankit'],
     'management': ['Aaryan', 'Abhishek', 'Akshansh', 'Ankit', 'Divyanshu', 'Hariom', 'Jayantika', 'Muskan', 'Naina', 'Pavan', 'Prince', 'Raj', 'Rajeev', 'Rishab', 'Riteek', 'Adarsh', 'Aarya', 'Rohit', 'Saurav', 'Vishal'],
     'catering': ['Adarsh', 'Raj', 'Rajeev', 'Saurav', 'Hariom'],
-    'stage': ['Naina', 'Jayantika', 'Arya', 'Akshansh', 'Rishab'],
+    'stage': ['Naina', 'Jayantika', 'Arya', 'Akshansh', 'Rishabh'],
     'backstage': ['Ankit'],
     'finance': ['Abhishek'],
     'performance': ['Abhishek', 'Raj', 'Muskan', 'Divyanshu'],
@@ -212,6 +269,7 @@ function openDialog(role) {
   // Display the dialog
   const dialog = document.getElementById('dialog');
   dialog.style.display = 'block';
+  dialog.style.overflow = 'auto';
   document.body.style.overflowY = "hidden";
 }
 
@@ -223,26 +281,50 @@ function closeDialog() {
 }
 
 
-function toggleLoginLogout() {
-  var loginLogoutLink = document.getElementById("loginLogoutLink");
-  var isLoggedIn = true; // Replace this with your actual authentication logic
-
-  if (isLoggedIn) {
-    loginLogoutLink.textContent = "Log out";
-    loginLogoutLink.href = "/logout"; // Replace "/logout" with your logout URL
-  } else {
-    loginLogoutLink.textContent = "Log in";
-    loginLogoutLink.href = "/login"; // Replace "/login" with your login URL
-  }
-}
-
-// Call the function when the page loads
-window.onload = toggleLoginLogout;
-
-
 function showAlert() {
   var choice = confirm('Please Login First');
   if (choice == true) {
     window.location.href = '/login';
   }
 }
+
+function profileAsWidthChanges() {
+  var width = window.innerWidth;
+  if (width > 768) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.to(".profile1", {
+      scrollTrigger: {
+        trigger: ".profile1",
+        start: "top 50%", // Start scrolling from the left edge of .profile
+        end: "bottom 65%", // End scrolling at the right edge of .profile
+        scrub: 1,
+        // markers:"true"
+      },
+      x: -(document.querySelector('.person1').scrollWidth - document.querySelector('.person1').offsetWidth) // Scrolls the .profile horizontally
+    });
+
+    gsap.to(".profile2", {
+      scrollTrigger: {
+        trigger: ".profile2",
+        start: "top 60%", // Start scrolling from the left edge of .profile
+        end: "bottom 60%", // End scrolling at the right edge of .profile
+        scrub: 1,
+        // markers:"true"
+      },
+      x: -(document.querySelector('.person2').scrollWidth - document.querySelector('.person2').offsetWidth) // Scrolls the .profile horizontally
+    });
+    gsap.to(".profile3", {
+      scrollTrigger: {
+        trigger: ".profile3",
+        start: "top 50%", // Start scrolling from the left edge of .profile
+        end: "bottom 60%", // End scrolling at the right edge of .profile
+        scrub: 1,
+        // markers:"true"
+      },
+      x: -(document.querySelector('.person3').scrollWidth - document.querySelector('.person3').offsetWidth) // Scrolls the .profile horizontally
+    });
+  }
+}
+
+profileAsWidthChanges()

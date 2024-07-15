@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/images/favicon_io/site.webmanifest">
+    <link rel="stylesheet" href="/stylesheets/vote.css">
+    <title>Organisers</title>
+
+    <style>
+        .container {
+    background-image: url(../images/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+    </style>
+</head>
+
+<body>
+    <h1 class="heading">Organisers</h1>
+    <main class="container">
+    </main>
+    <script>
+        names = ['Aaryan', 'Abhishek', 'Akshansh', 'Ankit', ' ', 'Divyanshu', ' ', 'Hariom', 'Jayantika', 'Muskan', 'Naina', 'Pavan', 'Prince', 'Raj', 'Rajeev', 'Rishabh', 'Riteek', 'Rohit', ' ', 'Adarsh', 'Aarya', ' ', 'Rohit', 'Saurav', 'Vishal']
+        candidate = ""
+        names.forEach((name, index) => {
+            if (name == ' ') return;
+
+            candidate += `
+            <div class="candidate">
+                <div class="cand-img">
+                    <img loading="lazy" src="/images/organisers/MGCU2022CSIT30${String(index + 1).padStart(2, '0')}.png"
+                        alt="">
+                </div>
+                    <div class="cand-id">
+                        <h2 class="cand-name">${name}</h2>
+                    </div>
+                    </div>`
+        });
+        document.querySelector(".container").innerHTML = candidate;
+        // <button class="vote" onclick="vote('MGCU2023CSIT30${String(index + 1).padStart(2, '0')}')">Vote Now!</button>
+    </script>
+</body>
+
+</html>

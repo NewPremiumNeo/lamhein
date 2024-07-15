@@ -2,176 +2,186 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photos Management</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.css"
-        integrity="sha512-Woz+DqWYJ51bpVk5Fv0yES/edIMXjj3Ynda+KWTIkGoynAMHrqTcDUQltbipuiaD5ymEo9520lyoVOo9jCQOCA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
-        integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photos Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.css"
+    integrity="sha512-Woz+DqWYJ51bpVk5Fv0yES/edIMXjj3Ynda+KWTIkGoynAMHrqTcDUQltbipuiaD5ymEo9520lyoVOo9jCQOCA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+    integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="/stylesheets/adminPhotos.css">
+  <link rel="stylesheet" href="/stylesheets/adminPhotos.css" />
 </head>
 
 <body>
-    <main>
+
+  <main>
+    <% if (messages && messages.length> 0) { %>
+      <div class="alert alert-danger" role="alert">
+        <h3>
+          <%= messages[0] %>
+        </h3>
+      </div>
+      <% } %>
+
         <div class="jumbotron">
-            <h1><i class="fa fa-camera-retro"></i> My Image Gallary</h1>
-            <p>Just a Gallary Full of Beautiful Images...</p>
+          <h1>2k21 Photos:-</h1>
         </div>
-        <div class="panel">
-            <a class="button_outer" href="/admin/photos/upload/">Upload Image</a>
+
+        <section class="gallery">
+          <% if (allPhotos2k21 && allPhotos2k21.length> 0) { %>
+            <% allPhotos2k21.forEach(post=> { %>
+              <div class="image-container">
+                <% let imageUrl=post.postImageUrl; if (imageUrl.endsWith('.heic')) {
+                  imageUrl=imageUrl.replace('.heic', '.jpg' ); } %>
+
+                  <a href="<%= imageUrl %>" data-lightbox="models" data-title="Photos">
+                    <img src="<%= imageUrl %>" alt="Photos" loading="lazy" class="gallery-image">
+                  </a>
+                  <div class="button-container">
+                    <button onclick="deletePhoto('<%= post._id %>')" class="btn btn-primary btn-download">
+                      Delete
+                    </button>
+                    <button data-bs-toggle="modal" data-bs-target="#userLiked" onclick="likedby('<%= post._id %>')"
+                      class="btn btn-success btn-like">
+                      <i class="fa fa-heart"></i> Liked by?
+                    </button>
+                  </div>
+              </div>
+              <% }); %>
+                <% } else { %>
+                  <h1 style="color: #111;">No Photos of 2k21
+                  </h1>
+                  <% } %>
+        </section>
+
+
+        <div class="jumbotron">
+          <h1>2k22 Photos:-</h1>
         </div>
-        <% if (messages && messages.length> 0) { %>
-            <div class="alert alert-danger" role="alert">
-                <h3>
-                    <%= messages[0] %>
-                </h3>
-            </div>
-            <% } %>
-                <div class="jumbotron">
-                    <h1>2k21 Photos :-</h1>
-                </div>
-                <div class="container">
-                    <div class="gallery">
-                        <% if (allPhotos2k21 && allPhotos2k21.length> 0) { %>
-                            <% allPhotos2k21.forEach(post=> { %>
-                                <div class="grid__images">
-                                    <a href="<%= post.postImageUrl %>" data-lightbox="models" data-title="Photos">
-                                        <img src="<%= post.postImageUrl %>" alt="Photos">
-                                    </a>
-                                    <div class="button-container">
-                                        <button onclick="deletePhoto('<%= post._id %>')"
-                                            class="btn btn-primary btn-download">Delete</button>
-                                        <button data-bs-toggle="modal" data-bs-target="#userLiked"
-                                            onclick="likedby('<%= post._id %>')" class="btn btn-success btn-like">
-                                            <i class="fa fa-heart"></i> Liked by?
-                                        </button>
-                                    </div>
-                                </div>
-                                <% }); %>
-                                    <% } else{ %>
-                                        <h1 style="color: #f1f1f1;">NO Photos of 2k21</h1>
-                                        <% } %>
-                    </div>
-                </div>
-                <div class="jumbotron">
-                    <h1>2k22 Photos:- </h1>
-                </div>
 
-                <div class="container">
-                    <div class="gallery">
-                        <% if (allPhotos2k22 && allPhotos2k22.length> 0) { %>
-                            <% allPhotos2k22.forEach(post=> { %>
-                                <div class="grid__images">
-                                    <a href="<%= post.postImageUrl %>" data-lightbox="models" data-title="Photos">
-                                        <img src="<%= post.postImageUrl %>" alt="Photos">
-                                    </a>
-                                    <div class="button-container">
-                                        <button onclick="deletePhoto('<%= post._id %>')"
-                                            class="btn btn-primary btn-download">Delete</button>
-                                        <button data-bs-toggle="modal" data-bs-target="#userLiked"
-                                            onclick="likedby('<%= post._id %>')" class="btn btn-success btn-like">
-                                            <i class="fa fa-heart"></i> Liked by?
-                                        </button>
-                                    </div>
-                                </div>
-                                <% }); %>
-                                    <% } else{ %>
-                                        <h1 style="color: #f1f1f1;">NO Photos of 2k22</h1>
-                                        <% } %>
-                    </div>
-                </div>
+        <section class="gallery">
+          <% if (allPhotos2k22 && allPhotos2k22.length> 0) { %>
+            <% allPhotos2k22.forEach(post=> { %>
+              <div class="image-container">
+                <% let imageUrl=post.postImageUrl; if (imageUrl.endsWith('.heic')) {
+                  imageUrl=imageUrl.replace('.heic', '.jpg' ); } %>
 
-                <div class="jumbotron">
-                    <h1>2k23 Photos:- </h1>
-                </div>
-                <div class="container">
-                    <div class="gallery">
-                        <% if (allPhotos2k23 && allPhotos2k23.length> 0) { %>
-                            <% allPhotos2k23.forEach(post=> { %>
-                                <div class="grid__images">
-                                    <a href="<%= post.postImageUrl %>" data-lightbox="models" data-title="Photos">
-                                        <img src="<%= post.postImageUrl %>" alt="Photos">
-                                    </a>
-                                    <div class="button-container">
-                                        <button onclick="deletePhoto('<%= post._id %>')"
-                                            class="btn btn-primary btn-download">Delete</button>
-                                        <button data-bs-toggle="modal" data-bs-target="#userLiked"
-                                            onclick="likedby('<%= post._id %>')" class="btn btn-success btn-like">
-                                            <i class="fa fa-heart"></i> Liked by?
-                                        </button>
-                                    </div>
-                                </div>
-                                <% }); %>
-                                    <% } else{ %>
-                                        <h1 style="color: #f1f1f1;">NO Photos of 2k23</h1>
-                                        <% } %>
-                    </div>
-                </div>
-
-    </main>
+                  <a href="<%= imageUrl %>" data-lightbox="models" data-title="Photos">
+                    <img src="<%= imageUrl %>" alt="Photos" loading="lazy" class="gallery-image">
+                  </a>
+                  <div class="button-container">
+                    <button onclick="deletePhoto('<%= post._id %>')" class="btn btn-primary btn-download">
+                      Delete
+                    </button>
+                    <button data-bs-toggle="modal" data-bs-target="#userLiked" onclick="likedby('<%= post._id %>')"
+                      class="btn btn-success btn-like">
+                      <i class="fa fa-heart"></i> Liked by?
+                    </button>
+                  </div>
+              </div>
+              <% }); %>
+                <% } else { %>
+                  <h1 style="color: #111;">No Photos of 2k22
+                  </h1>
+                  <% } %>
+        </section>
 
 
-    <div class="modal fade" id="userLiked" tabindex="-1" aria-labelledby="userLikedLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="card shadow">
-                    <div class="card-header bg-primary">
-                        <h5 class="text-light">Liked By:- </h5>
-                    </div>
-                    <div class="card-body p-4 bg-white text-black">
-                    </div>
-                </div>
-            </div>
+        <div class="jumbotron">
+          <h1>2k23 Photos:-</h1>
         </div>
+
+        <section class="gallery">
+          <% if (allPhotos2k23 && allPhotos2k23.length> 0) { %>
+            <% allPhotos2k23.forEach(post=> { %>
+              <div class="image-container">
+                <% let imageUrl=post.postImageUrl; if (imageUrl.endsWith('.heic')) {
+                  imageUrl=imageUrl.replace('.heic', '.jpg' ); } %>
+
+                  <a href="<%= imageUrl %>" data-lightbox="models" data-title="Photos">
+                    <img src="<%= imageUrl %>" alt="Photos" loading="lazy" class="gallery-image">
+                  </a>
+                  <div class="button-container">
+                    <button onclick="deletePhoto('<%= post._id %>')" class="btn btn-primary btn-download">
+                      Delete
+                    </button>
+                    <button data-bs-toggle="modal" data-bs-target="#userLiked" onclick="likedby('<%= post._id %>')"
+                      class="btn btn-success btn-like">
+                      <i class="fa fa-heart"></i> Liked by?
+                    </button>
+                  </div>
+              </div>
+              <% }); %>
+                <% } else { %>
+                  <h1 style="color: #111;">No Photos of 2k22
+                  </h1>
+                  <% } %>
+        </section>
+
+  </main>
+
+
+  <div class="modal fade" id="userLiked" tabindex="-1" aria-labelledby="userLikedLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="card shadow">
+          <div class="card-header bg-primary">
+            <h5 class="text-light">Liked By:-</h5>
+          </div>
+          <div class="card-body p-4 bg-white text-black"></div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.js"
-        integrity="sha512-oaWLach/xXzklmJDBjHkXngTCAkPch9YFqOSphnw590sy86CVEnAbcpw17QjkUGppGmVJojwqHmGO/7Xxx6HCw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.js"
+    integrity="sha512-oaWLach/xXzklmJDBjHkXngTCAkPch9YFqOSphnw590sy86CVEnAbcpw17QjkUGppGmVJojwqHmGO/7Xxx6HCw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script>
-        async function deletePhoto(id) {
-            try {
-                const response = await fetch(`/admin/photo/${id}/delete`, { method: 'post' });
-                if (response.ok) {
-                    window.location.href = '/admin/photos/';
-                } else {
-                    console.error('Failed to Delete');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
+  <script>
+    async function deletePhoto(id) {
+      try {
+        const response = await fetch(`/admin/photo/${id}/delete`, {
+          method: "post",
+        });
+        if (response.ok) {
+          window.location.href = "/admin/photos/";
+        } else {
+          console.error("Failed to Delete");
         }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
 
-        async function likedby(id) {
-            const res = await fetch(`/admin/photo/${id}/liked`, { method: 'get' });
+    async function likedby(id) {
+      const res = await fetch(`/admin/photo/${id}/liked`, { method: "get" });
 
-            if (res.ok) {
-                const data = await res.json();
-                const likeUserIds = data.likeUserIds;
+      if (res.ok) {
+        const data = await res.json();
+        const likeUserIds = data.likeUserIds;
 
-                const card_body = document.querySelector('.card-body');
-                card_body.innerHTML = '';
+        const card_body = document.querySelector(".card-body");
+        card_body.innerHTML = "";
 
-                likeUserIds.forEach(user => {
-                    const div = document.createElement('div');
-                    div.classList.add(".mb-3")
+        likeUserIds.forEach((user) => {
+          const div = document.createElement("div");
+          div.classList.add(".mb-3");
 
-                    div.innerHTML = `Name: ${user.name}<br>Username: ${user.username}<br><br>`;
-                    card_body.appendChild(div);
-                });
-            } else {
-                console.error('Failed to fetch liked users:', res.status);
-            }
-        }
-    </script>
+          div.innerHTML = `Name: ${user.name}<br>Username: ${user.username}<br><br>`;
+          card_body.appendChild(div);
+        });
+      } else {
+        console.error("Failed to fetch liked users:", res.status);
+      }
+    }
+  </script>
 </body>
 
 </html>

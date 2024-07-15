@@ -3,15 +3,25 @@ const { uploadOnCloudinary } = require('../middleware/cloudinary.js');
 const { uploadOnImgbb } = require('../middleware/imgbb.js');
 const photoModel = require('../models/photoModel.js');
 
+
 exports.photoUploadPost = async (req, res) => {
-    const { postTitle, postDescription, year } = req.body;
+    const { postTitle, postDescription, year, service } = req.body;
+
+    console.log(service)
     if (!req.file) {
         console.log("File not found");
         return res.status(400).send('No files uploaded.');
     }
     const uploadedPhoto = { imageUrl: req.file.path };
     try {
-        const result = await uploadOnImgbb(uploadedPhoto.imageUrl);
+        var result = null
+        if(service == 'cloudinary'){
+            result = await uploadOnCloudinary(uploadedPhoto.imageUrl);
+        }
+        else {
+            result = await uploadOnImgbb(uploadedPhoto.imageUrl);
+        }
+
         if (result) {
             const newPhoto = new photoModel({
                 postImageUrl: result,

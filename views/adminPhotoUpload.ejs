@@ -30,7 +30,11 @@
                                 <option value="2k22">2k22</option>
                                 <option value="2k23">2k23</option>
                             </select>
-                            <input class="file-input" type="file" name="photos" hidden>
+                            <select id="service" name="service">
+                                <option value="cloudinary">cloudinary</option>
+                                <option value="imgbb">imgbb</option>
+                            </select>
+                            <input class="file-input" type="file" name="photos" multiple hidden>
                             <input type="text" name="postTitle" placeholder="Enter Title" value="Photo" required hidden>
                             <textarea name="postDescription" rows="4" placeholder="Enter your post content" required
                                 hidden>Photo Description</textarea>

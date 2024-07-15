@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/images/favicon_io/site.webmanifest">
     <title>Voted</title>
 </head>
 <style>
@@ -128,6 +132,27 @@
         height: 7rem;
     }
 
+    .icon {
+    display: inline-block; /* Display the icon as an inline block */
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    z-index: 999;
+  }
+  .icon a {
+    text-decoration: none; /* Remove underline from the anchor */
+  }
+  .icon img {
+    width: 32px; /* Set the width of the image */
+    height: 32px; /* Set the height of the image */
+    border: none; /* Remove border from the image */
+  }
+  .icon img:hover{
+    scale:  1.1; /* Scale up the image when hovered over */
+    transition-duration: 0.3s;
+  }
+
+
     @media screen and (-ms-high-contrast: active),
     (-ms-high-contrast: none) {
         .funds-display-on-ie {
@@ -251,6 +276,9 @@
 </style>
 
 <body>
+    <div class="icon">
+        <a href="/" > <img src="/images/icons8-home_voted.png" alt="Home Icon"/> </a>
+    </div>
     <canvas id=c></canvas>
     <div class="funds-success-message-container">
         <div class="funds-checkmark-text-container">

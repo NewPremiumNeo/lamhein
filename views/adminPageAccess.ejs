@@ -69,7 +69,18 @@
                 </div>
             </div>
         </div>
+        <h1>Vote Counts</h1>
+        <% if (voteCounts && voteCounts.length > 0) { %>
+            <ul>
+                <% voteCounts.forEach(vote => { %>
+                    <li><%= vote.name %> - <%= vote.count %></li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>No votes recorded yet.</p>
     </div>
+
+    <% } %>
 
     <!-- Bootstrap JS (optional) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

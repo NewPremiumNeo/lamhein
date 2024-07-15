@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/images/favicon_io/site.webmanifest">
     <title>Register | 2k23 Freshers</title>
     <style>
         * {
@@ -146,7 +150,7 @@
             </div>
             <% } %>
                 <hr>
-                <form action="/register" method="post" id="registrationForm">
+                <form action="/register" method="post" id="registrationForm" onsubmit="downloadPDF(),showAlert()">
                     <label for="name">Name :</label>
                     <input type="text" id="name" name="name" placeholder="Name" class="form-control" required>
 
@@ -159,6 +163,10 @@
 
                     <label for="password">Password :</label>
                     <input type="password" id="password" name="password" placeholder="Password" class="form-control"
+                        required>
+
+                    <label for="password">Confirm Password :</label>
+                    <input type="password" class="form-control" placeholder="Confirm Password" id="confirm_password"
                         required>
 
                     <label for="mobile">Mobile Number :</label>
@@ -174,9 +182,37 @@
                 </div>
 
                 <script>
+
+                    function showAlert() {
+                        var choice = alert('Ticket downloaded');
+                        window.location.href = '/';
+                    }
+
+                    function downloadPDF() {
+                        const link = document.createElement('a');
+                        link.href = 'images/NeoFiesta2K23.pdf';
+                        link.download = 'NeoFiesta2K23.pdf';
+                        link.click();
+                    }
                     setTimeout(() => {
                         document.getElementById('msg').style.display = 'none';
                     }, 3000);
+
+                    var password = document.getElementById("password")
+                        , confirm_password = document.getElementById("confirm_password");
+
+                    function validatePassword() {
+                        if (password.value != confirm_password.value) {
+                            confirm_password.setCustomValidity("Passwords Don't Match");
+                        } else {
+                            confirm_password.setCustomValidity('');
+                        }
+                    }
+
+                    password.onchange = validatePassword;
+                    confirm_password.onkeyup = validatePassword;
+
+
                 </script>
 </body>
 

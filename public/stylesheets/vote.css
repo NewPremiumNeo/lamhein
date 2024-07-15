@@ -23,23 +23,29 @@ html {
 }
 
 .heading {
-   margin: 15px;
+    margin: 15px;
     font-weight: 800;
-    color: #ffffff; /* White color for better contrast */
-    font-size: 3rem; /* Larger font size for emphasis */
+    color: #ffffff;
+    /* White color for better contrast */
+    font-size: 3rem;
+    /* Larger font size for emphasis */
     text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for emphasis */
-    background: linear-gradient(to right, var(--color-primary), var(--color-secondary)); /* Gradient background for header */
-    -webkit-background-clip: text; /* Clip text to the background gradient */
-    -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    /* Add text shadow for emphasis */
+
+    background: #0010CF;
+    background: radial-gradient(ellipse farthest-side at center center, #0010CF 0%, #D501C9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
 }
 
 
-.container{
+.container {
     background-image: url(../images/6035425.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    display: flex;
+    display: flex;   
     justify-content: center;
     flex-direction: wrap;
     flex-wrap: wrap;
@@ -49,12 +55,13 @@ html {
     align-items: center;
 }
 
-.candidate{
+.candidate {
     width: 250px;
     padding: 2rem 1rem;
     position: relative;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.8); /* Lighter background for better contrast */
+    background: rgba(255, 255, 255, 0.8);
+    /* Lighter background for better contrast */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(5.1px);
     -webkit-backdrop-filter: blur(5.1px);
@@ -69,7 +76,7 @@ html {
     position: relative;
     height: 20rem;
     width: 20rem;
-    background-image: linear-gradient(45deg,var(--gradient));
+    /* background-image: linear-gradient(45deg, var(--gradient)); */
     padding: 0.6rem;
     border: solid 5px rgb(255, 255, 255);
     border-radius: 50%;
@@ -83,18 +90,18 @@ html {
     border-radius: 50%;
 }
 
-.cand-id h2{
+.cand-id h2 {
     font-size: 1.8rem;
     font-family: monospace;
-    color: #5f71a0; 
+    color: #5f71a0;
     text-align: center;
 }
 
-.cand-id h2.cand-name{
+.cand-id h2.cand-name {
     color: #4d66a3;
 }
 
-.vote{
+.vote {
     padding: 1rem 1.6rem;
     font-size: 1.7rem;
     text-align: center;
@@ -108,35 +115,41 @@ html {
     transition: 300ms ease-in-out;
     cursor: pointer;
 }
-.vote:hover{
+
+.vote:hover {
     background-color: aliceblue;
     color: #0437b7;
 }
 
 @media (max-width:550px) {
-    .container{
+    .container {
         gap: 5px;
     }
-    .candidate{
+
+    .candidate {
         width: 200px;
     }
-    .movieInfo h1{
+
+    .movieInfo h1 {
         font-size: 1.9rem;
     }
 
-    
+
 }
 
-@media (max-width:550px){
-    html{
+@media (max-width:550px) {
+    html {
         font-size: 50%;
     }
-    .container{
+
+    .container {
         gap: 5px;
     }
-    .candidate{
+
+    .candidate {
         width: 49%;
     }
+
     .cand-img {
         height: 18rem;
         width: 18rem;

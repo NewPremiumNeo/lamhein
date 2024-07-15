@@ -52,6 +52,29 @@
     object-fit: cover;
     overflow: hidden;
   }
+
+  .icon {
+    display: inline-block; /* Display the icon as an inline block */
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    z-index: 999;
+  }
+  .icon a {
+    text-decoration: none; /* Remove underline from the anchor */
+  }
+  .icon img {
+    width: 32px; /* Set the width of the image */
+    height: 32px; /* Set the height of the image */
+    border: none; /* Remove border from the image */
+  }
+  .icon img:hover{
+    scale:  1.1; /* Scale up the image when hovered over */
+    transition-duration: 0.3s;
+  }
+
+
+
   /* Gallery Section CSS Starts here */
   #GallerySection {
     position: relative;

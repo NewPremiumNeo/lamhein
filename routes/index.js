@@ -32,7 +32,12 @@ router.get('/', async function (req, res, next) {
   if (req.user) {
     user = await usersModel.findById(req.user._id)
   }
-  res.render('index', { user, bool });
+  const successMsg = req.flash('success')[0];
+  const errorMsg = req.flash('error')[0]
+  res.render('index', {
+    user, bool, successMsg,
+    errorMsg
+  });
 });
 
 router.get('/register', function (req, res, next) {
@@ -42,9 +47,7 @@ router.get('/register', function (req, res, next) {
 router.post('/register', userController.postRegister)
 
 // Login or Signin Get
-router.get('/login', function (req, res) {
-  res.render('login', { messages: req.flash('error') });
-});
+router.get('/login', userController.getLogin);
 
 //Login or Signin Post
 router.post('/login', userController.postLogin, function (req, res) { })
@@ -60,13 +63,13 @@ router.get('/gallery', isLoggedIn, function (req, res, next) {
   res.render('gallery');
 });
 
-router.get('/gallery/photos/:year', async function (req, res, next) {
+router.get('/gallery/photos/:year', isLoggedIn, async function (req, res, next) {
   try {
     const year = req.params.year
     const validYear = ["2k21", "2k22", "2k23"]
     if (validYear.includes(year)) {
       const allPhotos = await photoModel.find({ year });
-      res.render('photos', { allPhotos, title: `Image Gallery ${year}`, bgimg: `/images/imageBG${year}.jpg` });
+      res.render('photos', { allPhotos, title: `Image Gallery ${year}`, bgimg: `/images/imageBG${year}.jpg`, year });
     } else {
       throw Error("Page Not Found")
     }
@@ -100,10 +103,9 @@ router.get('/gallery/videos/:year', isLoggedIn, async function (req, res, next) 
 //   res.render('videos');
 // });
 
-// router.get('/photos2', async function (req, res, next) {
-//   const allPhotos = await photoModel.find();
-//   res.render('photos', { allPhotos, title: `Image Gallery 2222` });
-// });
+router.get('/organisers', async function (req, res, next) {
+  res.render('organisers');
+});
 
 router.get('/changepassword', isLoggedIn, (req, res) => {
   res.render('changePassword', {

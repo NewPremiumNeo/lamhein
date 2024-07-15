@@ -4,7 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project X</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_io/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_io/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_io/favicon-16x16.png" />
+  <link rel="manifest" href="/images/favicon_io/site.webmanifest" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_io/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_io/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_io/favicon-16x16.png" />
+  <link rel="manifest" href="/images/favicon_io/site.webmanifest" />
+  <title>Winner | 2k23 Freshers</title>
 </head>
 <style>
   html,
@@ -21,11 +31,10 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     justify-content: center;
   }
+
 
   .candidate {
     background: rgba(255, 255, 255, 0.16);
@@ -82,6 +91,36 @@
     animation: slideIn 1s ease-out;
   }
 
+  .icon {
+    display: inline-block;
+    /* Display the icon as an inline block */
+    position: absolute;
+    top: 2rem;
+    left: 1rem;
+    z-index: 999;
+  }
+
+  .icon a {
+    text-decoration: none;
+    /* Remove underline from the anchor */
+  }
+
+  .icon img {
+    width: 32px;
+    /* Set the width of the image */
+    height: 32px;
+    /* Set the height of the image */
+    border: none;
+    /* Remove border from the image */
+  }
+
+  .icon img:hover {
+    scale: 1.1;
+    /* Scale up the image when hovered over */
+    transition-duration: 0.3s;
+  }
+
+
   @keyframes slideIn {
     0% {
       opacity: 0;
@@ -102,6 +141,11 @@
 </style>
 
 <body>
+  <div class="icon">
+    <a href="/">
+      <img src="/images/icons8-home_voted.png" alt="Home Icon" />
+    </a>
+  </div>
   <canvas id="world"></canvas>
   <div class="container">
     <% if (winners && winners.length> 0) { %> <% winners.forEach(winner=> { %>

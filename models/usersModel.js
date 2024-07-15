@@ -19,6 +19,7 @@ const userSchema = mongoose.Schema({
         required: true,
         trim: true,
         lowercase: true,
+        index: true,
         unique: true
     },
     mobile: {
@@ -69,6 +70,6 @@ const userSchema = mongoose.Schema({
 
 }, { timestamps: true });
 
-userSchema.plugin(plm);
+userSchema.plugin(plm, { usernameQueryFields: ["email", "username"] });
 
 module.exports = mongoose.model('User', userSchema);
