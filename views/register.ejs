@@ -150,7 +150,7 @@
             </div>
             <% } %>
                 <hr>
-                <form action="/register" method="post" id="registrationForm" onsubmit="downloadPDF(),showAlert()">
+                <form action="/register" method="post" id="registrationForm">
                     <label for="name">Name :</label>
                     <input type="text" id="name" name="name" placeholder="Name" class="form-control" required>
 
@@ -183,17 +183,7 @@
 
                 <script>
 
-                    function showAlert() {
-                        var choice = alert('Ticket downloaded');
-                        window.location.href = '/';
-                    }
-
-                    function downloadPDF() {
-                        const link = document.createElement('a');
-                        link.href = 'images/NeoFiesta2K23.pdf';
-                        link.download = 'NeoFiesta2K23.pdf';
-                        link.click();
-                    }
+                    
                     setTimeout(() => {
                         document.getElementById('msg').style.display = 'none';
                     }, 3000);
@@ -211,8 +201,6 @@
 
                     password.onchange = validatePassword;
                     confirm_password.onkeyup = validatePassword;
-
-
                 </script>
 </body>
 
