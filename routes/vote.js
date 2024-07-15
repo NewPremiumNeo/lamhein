@@ -20,7 +20,7 @@ router.get('/voted', isLoggedIn, checkVoteStatus, checkWinnerDeclared, checkVote
 
 router.post('/', isLoggedIn, checkVoteStatus, checkWinnerDeclared, checkVoted, async (req, res) => {
     try {
-        names = ['Aadil Latif', 'Aditya Pratap', 'Ajain Raj', 'Akash', 'Alok Jaiswal', 'Alok Mehta', 'Ashish Kumar 1', 'Ashish Kumar 2', 'Ayush Pandey', 'Gyan Prakash', 'Kartik Sahu', 'Monu Kumawat', 'Nikhil Anand', 'Pabitra Mondal', 'Pankaj Kumar', 'Pratap Yadav', 'Prateek pandey', 'Priyanshu Kumar', 'Ranjeet Chaudhary', 'Ravi Raj', 'Rishabh Shukla', 'Riya Kumari', 'Sandeep Prajapati', 'Satyam Kumar', 'Shiva Hansda', 'Shruti Gupta', 'Shristi Gupta', 'Sudip Tikader', 'Swatantra Sahu', 'Vishal Kumar']
+        names = ['Aditya Kumar', 'Akanksha', 'Aakash Harsh', 'Amitesh Sharma', 'Anoushka Amit', 'Arti Choudhary', 'Aryan Raj', 'Bhagyashree', 'Hemant Raaz', 'Kumar Utkarsh', 'Kunal Kumar', 'Madhuri Singh', 'MD. Kaif', 'Mukul Anand', 'Muskan Raj', 'Oshin Arya', 'Priya Kumari', 'Rahul Kumar', 'Ramanand Kumar', 'Raunak Kumar', 'Ravikant Kumar', 'Rishab Raj', 'Rishita Srivastava', 'Rumi Kumari', 'Shahnawaz Alam', 'Shashank Kumar', 'Shikha Kumari', 'Shilpi Rani', 'Shweta Kumari', 'Soniya Prasad', 'Sujeet Kumar', 'Supriya Kumari', 'Vivek Kumar']
 
         const votedMember = req.body.votedMember;
         const userId = req.user._id;

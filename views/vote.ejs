@@ -14,7 +14,9 @@
     </main>
     <script>
         names = ['Aditya Kumar', 'Akanksha', 'Aakash Harsh', 'Amitesh Sharma', 'Anoushka Amit', 'Arti Choudhary', 'Aryan Raj', 'Bhagyashree', 'Hemant Raaz', 'Kumar Utkarsh', 'Kunal Kumar', 'Madhuri Singh', 'MD. Kaif', 'Mukul Anand', 'Muskan Raj', 'Oshin Arya', 'Priya Kumari', 'Rahul Kumar', 'Ramanand Kumar', 'Raunak Kumar', 'Ravikant Kumar', 'Rishab Raj', 'Rishita Srivastava', 'Rumi Kumari', 'Shahnawaz Alam', 'Shashank Kumar', 'Shikha Kumari', 'Shilpi Rani', 'Shweta Kumari', 'Soniya Prasad', 'Sujeet Kumar', 'Supriya Kumari', 'Vivek Kumar']
+        
         candidate = ""
+
         names.forEach((name, index) => {
             candidate += `
             <div class="candidate">
@@ -29,6 +31,50 @@
                     <button class="vote" onclick="vote('MGCU2020CSIT30${String(index + 1).padStart(2, '0')}')">Vote Now!</button>
             </div>`
         });
+
+
+        // namesg = ['', 'Akanksha', '', '', 'Anoushka Amit', 'Arti Choudhary', '', 'Bhagyashree', '', '', '', 'Madhuri Singh', '', '', 'Muskan Raj', 'Oshin Arya', 'Priya Kumari', '', '', '', '', '', 'Rishita Srivastava', 'Rumi Kumari', '', '', 'Shikha Kumari', 'Shilpi Rani', 'Shweta Kumari', 'Soniya Prasad', '', 'Supriya Kumari', '']
+
+        // namesb = ['Aditya Kumar', '', 'Aakash Harsh', 'Amitesh Sharma', '', '', 'Aryan Raj', '', 'Hemant Raaz', 'Kumar Utkarsh', 'Kunal Kumar', '', 'MD. Kaif', 'Mukul Anand', '', '', '', 'Rahul Kumar', 'Ramanand Kumar', 'Raunak Kumar', 'Ravikant Kumar', 'Rishab Raj', '', '', 'Shahnawaz Alam', 'Shashank Kumar', '', '', '', '', 'Sujeet Kumar', '', 'Vivek Kumar']
+        // candidate = ""
+        // // candidate += `<div class="big_candidate">`
+        
+        // namesb.forEach((name, index) => {
+        //     if(name){
+        //         candidate += `
+        //         <div class="candidate">
+        //             <div class="cand-img">
+        //                 <img loading="lazy" src="/images/freshers/MGCU2020CSIT30${String(index + 1).padStart(2, '0')}.png"
+        //                     alt="">
+        //             </div>
+        //                 <div class="cand-id">
+        //                     <h2>ID-${index + 1}</h2>
+        //                     <h2 class="cand-name">${name}</h2>
+        //                 </div>
+        //                 <button class="vote" onclick="vote('MGCU2020CSIT30${String(index + 1).padStart(2, '0')}')">Vote Now!</button>
+        //         </div>`
+        //     }
+        // });
+        // candidate += `<div class="dash_line"></div>`
+        // namesg.forEach((name, index) => {
+        //     if(name){
+        //         candidate += `
+        //         <div class="candidate">
+        //             <div class="cand-img">
+        //                 <img loading="lazy" src="/images/freshers/MGCU2020CSIT30${String(index + 1).padStart(2, '0')}.png"
+        //                     alt="">
+        //             </div>
+        //                 <div class="cand-id">
+        //                     <h2>ID-${index + 1}</h2>
+        //                     <h2 class="cand-name">${name}</h2>
+        //                 </div>
+        //                 <button class="vote" onclick="vote('MGCU2020CSIT30${String(index + 1).padStart(2, '0')}')">Vote Now!</button>
+        //         </div>`
+        //     }
+        // });
+        // candidate += `</div>`
+
+        
         document.querySelector(".container").innerHTML = candidate;
 
         async function vote(votedMember) {

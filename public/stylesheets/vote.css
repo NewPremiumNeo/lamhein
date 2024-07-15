@@ -61,7 +61,6 @@ html {
     position: relative;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.8);
-    /* Lighter background for better contrast */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(5.1px);
     -webkit-backdrop-filter: blur(5.1px);
@@ -71,6 +70,7 @@ html {
     align-items: center;
     flex-direction: column;
 }
+
 
 .cand-img {
     position: relative;
