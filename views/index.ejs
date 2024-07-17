@@ -54,12 +54,12 @@
       <div class="projectName">
         <% if (user) { %>
           <div onclick="window.location.href = '/profile'" class="avatar">
-            <img src="<%= user.userDp || `/uploads/userDp/default.jpg` %>" alt="">
+            <img src="<%= user.userDp || `/uploads/userDp/lamhein.png` %>" alt="">
           </div>
           <h1>Hey<span class="wave">👋</span>, <%= user.name.split(' ')[0] %></h1>
         <% } else{ %>
           <div onclick="window.location.href = ' /profile'" class="avatar">
-              <img src="/uploads/userDp/default.jpg" alt="">
+              <img src="/uploads/userDp/lamhein.png" alt="">
       </div>
       <h1>Lamhein</h1>
       <% } %>
@@ -110,7 +110,7 @@
     <% if (bool && bool.isWinnerOn) { %>
       <div class="VoteBtn">
         <% if (user) { %>
-          <button onclick="window.location.href ='/vote/winner';">See Winner</button>
+          <button onclick="window.location.href ='/vote/winner';">See Winner 🥳</button>
           <% } else { %>
             <button onclick="showAlert()">See Winner</button>
             <% } %>
@@ -242,6 +242,13 @@
         <h3>Mr. Shubham Kumar</h3>
         <h6>Assistant Professor</h6>
       </div>
+      <div class="profile1" id="profile">
+        <div class="pic">
+          <img src="/images/cheif_guest/atul.png" alt="profile1">
+        </div>
+        <h3>Dr. Atul Tripathi</h3>
+        <h6>Assistant Professor</h6>
+      </div>
     </div>
     <!-- ------------------- Guest ---------------------- -->
     <div class="person2" style="margin-top: 0; align-items: self-start; padding-top: 0;">
@@ -331,12 +338,12 @@
         <li>
           <h3 class="title">Opening Ceremony</h3>
           <p>
-            The Freshers Party will start with "Lamp Lighting" accompanied by an opening ceremony. After this,
-            newcomers
+            The Farewell Party will start with "Lamp Lighting" accompanied by an opening ceremony. After this,
+            seniors
             will set the stage on fire with their "Ramp Walk."
           </p>
           <span class="circle"></span>
-          <span class="time">5-6pm</span>
+          <span class="time">4-5pm</span>
 
         </li>
         <li>
@@ -348,29 +355,28 @@
           </p>
 
           <span class="circle"></span>
-          <span class="time">6-6:30pm</span>
+          <span class="time">5-5:30pm</span>
         </li>
         <li>
           <h3 class="title">Comedy Hour</h3>
           <p>
             Get ready for some laughs with a stand-up comedy show. Prepare to be entertained with a series of
-            hilarious
-            acts that will keep you smiling throughout.
+            hilarious acts that will keep you smiling throughout.
           </p>
 
           <span class="circle"></span>
-          <span class="time">6:30-7pm</span>
+          <span class="time">5:30-6pm</span>
         </li>
         <li>
           <h3 class="title">Dance and Drama</h3>
           <p>
-            Setting the stage on fire with solo performances and group dances. Witness the passion and talent of our
-            fresher participants as they captivate the audience with their mesmerizing moves and compelling
+            Setting the stage on fire with solo performances and group dances. Witness the passion and talent of
+            participants as they captivate the audience with their mesmerizing moves and compelling
             storytelling.
           </p>
 
           <span class="circle"></span>
-          <span class="time">7-8pm</span>
+          <span class="time">6-7pm</span>
         </li>
         <li>
           <h3 class="title">Games Galore</h3>
@@ -380,7 +386,7 @@
           </p>
 
           <span class="circle"></span>
-          <span class="time">8-8:30pm</span>
+          <span class="time">7-7:30pm</span>
         </li>
         <li>
           <h3 class="title">Closing Event</h3>
@@ -390,7 +396,7 @@
           </p>
 
           <span class="circle"></span>
-          <span class="time">8:30-9pm</span>
+          <span class="time">7:30-8pm</span>
         </li>
       </ul>
     </div>

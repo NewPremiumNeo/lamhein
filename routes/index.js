@@ -63,13 +63,15 @@ router.get('/gallery', isLoggedIn, function (req, res, next) {
   res.render('gallery');
 });
 
-router.get('/gallery/photos/:year', isLoggedIn, async function (req, res, next) {
+router.get('/gallery/photos/:gallery', isLoggedIn, async function (req, res, next) {
   try {
-    const year = req.params.year
-    const validYear = ["2k21", "2k22", "2k23"]
-    if (validYear.includes(year)) {
+    const gallery = req.params.gallery
+    // const validYear = ["2k21", "2k22", "2k23"]
+    const validGallery = ["memories", "farewell"]
+    const year = gallery === "memories" ?  "2k21" : "2k22"
+    if (validGallery.includes(gallery)) {
       const allPhotos = await photoModel.find({ year });
-      res.render('photos', { allPhotos, title: `Image Gallery ${year}`, bgimg: `/images/imageBG${year}.jpg`, year });
+      res.render('photos', { allPhotos, title: gallery, bgimg: `/images/${gallery}.jpg`, year });
     } else {
       throw Error("Page Not Found")
     }

@@ -111,7 +111,7 @@ function forwardTimer(duration) {
 }
 
 // End date of the countdown
-const deadline = new Date(Date.parse(new Date("July 20,2024 18:00:00")));
+const deadline = new Date(Date.parse(new Date("July 19,2024 17:00:00")));
 const t = getTimeRemaining(deadline);
 if (t.total <= 0) {
   if (document.querySelector(".days")) {

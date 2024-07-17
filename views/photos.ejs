@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="/images/favicon_io/site.webmanifest">
     <title>
-        <%= title %> Image Gallery
+        <%= title.toUpperCase() %> Image Gallery
     </title>
     <link rel="stylesheet" href="/stylesheets/photos.css">
     <link rel="stylesheet" href="/stylesheets/responsive_design.css">
@@ -22,15 +22,15 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 
-<body style="background-color: <%= (year === '2k23') ? '#362F66' : (year === '2k21') ? '#1A1A1ABB' : '#4F185995' %>">
+<body style="background-color: <%= (year === '2k21') ? '#A5A198EE' : '#0A1367DD' %>">
     <main>
         <div class="other-categories">
             <div class="blur-background year<%= year %>" style="background-image: url('<%= bgimg %>');"></div>
             <div class="containing-div">
                 <div class="details">
                     <div class="title"
-                        style="color: <%= (year === '2k23') ? '#FCC364' : (year === '2k21') ? '#D2882D' : '#492467' %>">
-                        <%= title %>
+                        style="color: <%=(year === '2k21') ? '#D2882D' : '#0A1367' %>">
+                        <%= title.charAt(0).toUpperCase() + title.slice(1) %>
                     </div>
                 </div>
             </div>
@@ -41,9 +41,9 @@
             <% if (allPhotos && allPhotos.length> 0) { %>
                 <% allPhotos.forEach(post=> { %>
                     <div class="image-container">
-                        <% let imageUrl=post.postImageUrl; if (imageUrl.endsWith('.heic')) {
-                            imageUrl=imageUrl.replace('.heic', '.jpg' ); } if (imageUrl.startsWith('http://')) {
-                            imageUrl=imageUrl.replace('http://', 'https://' ); } %>
+                        <% let imageUrl=post.postImageUrl; if (imageUrl.endsWith('.heic'))
+                            imageUrl=imageUrl.replace('.heic', '.jpg' ); if (imageUrl.startsWith('http://'))
+                            imageUrl=imageUrl.replace('http://', 'https://' ); %>
 
                             <a href="<%= imageUrl %>" target="_blank" data-lightbox="models" data-title="Photos">
                                 <img src="<%= imageUrl %>" alt="Photos" loading="lazy" class="gallery-image">
@@ -64,11 +64,12 @@
                                 <h6 id="totalLike-<%= post._id %>"></h6>
                             </div>
                     </div>
-                    <% });
-            } else { %>
-                        <h1 style="color: #111;">No Photos of <%= title %> </h1>
-                    <% } %>
-            </section>
+                    <% }); %>
+                        <% } else { %>
+                            <h1 style="color: #111;">Currently, no photos of <%= title %>
+                            </h1>
+                            <% } %>
+        </section>
 
     </main>
 
