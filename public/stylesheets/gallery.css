@@ -86,26 +86,27 @@
     flex-direction: column;
   }
   #GallerySection h2 {
-    margin: 3rem auto;
-    font-size: 4.5rem;
-    padding-top: 20px;
+    
+    margin: 2rem auto;
+    font-size: 6rem;
+    padding-top: 15vh;
   }
   .btn{
     width: 40svw;
-    height: 70svh;
+    /* height: 70svh; */
     border-radius: 3rem;
     text-decoration: none;
     background: transparent;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.097);
+    /* background-color: rgba(0, 0, 0, 0.097); */
     resize: both;
     overflow: auto;
     min-width: 40svw;
     min-height: 50svh;
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
     font-weight: 700;
     letter-spacing: 0.6px;
   }
@@ -117,14 +118,19 @@
   }
 
   .btn a {
-    padding: 2.5rem 1rem;
-    border: 1.5px solid rgb(3, 129, 239);
+    height: 6rem;
+    width: 15rem;
+    /* background-color: crimson; */
+    text-align: center;
+    padding: 0 1rem;
+    line-height: 6rem;
+    border: 1.5px solid #C19D46;
     outline: none;
     border-radius: 10px;
     background-color: transparent;
     margin-top: 5rem;
     font-size: 1.8rem;
-    width: fit-content;
+    /* width: fit-content; */
     text-decoration: none;
     cursor: pointer;
   }

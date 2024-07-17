@@ -383,6 +383,7 @@ nav h1 {
   cursor: help;
   display: inline;
   line-height: 10rem;
+  color: #ffffffdd;
 }
 @keyframes anime {
   100%{
@@ -516,7 +517,7 @@ nav h1 {
   font-weight: bold;
   background-color: transparent;
   outline: none;
-  border: none;
+  border: 1px solid #fff;
   transition: color 0.5s;
   cursor: pointer;
   border-radius: 30px;
@@ -581,7 +582,7 @@ nav h1 {
   top: 2px;
   width: 25%;
   height: 100%;
-  background: var(--gold);
+  background: #70CCCC;
   border-radius: 100%;
   transform: translate3d(0, 150%, 0) scale(1.7);
   transition: transform 0.45s;
