@@ -147,7 +147,7 @@ contact()
 //scroll triggers on nav and main section
 var t1 = gsap.timeline()
 gsap.to("#navbar", {
-  backgroundColor: "#000",
+  backgroundColor: "#00000077",
   duration: 0.5,
   height: "70px",
   scrollTrigger: {
