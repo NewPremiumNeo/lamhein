@@ -160,6 +160,7 @@ gsap.to("#navbar", {
     scrub: 1,
   },
 });
+
 t1.from("#navbar h1, #navbar a", {
   y: -500,
   opacity: 0,
